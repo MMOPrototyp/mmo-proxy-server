@@ -7,7 +7,8 @@ project ("mmo-proxy-server")
 
 add_definitions("-std=c++14")
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(build/conanbuildinfo.cmake)
 conan_basic_setup()
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
