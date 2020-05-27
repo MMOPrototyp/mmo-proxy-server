@@ -5,4 +5,4 @@ cd build
 conan install ..
 
 cd ../
-cmake
+cmake .
