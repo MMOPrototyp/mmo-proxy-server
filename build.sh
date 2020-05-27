@@ -6,3 +6,4 @@ conan install ..
 
 cd ../
 cmake .
+make
