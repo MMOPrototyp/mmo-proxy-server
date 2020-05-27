@@ -2,11 +2,14 @@
 //
 
 #include "mmo-proxy-server.h"
+#include "ProxyConfig.h"
+#include <string>
 
 using namespace std;
 
 int main()
 {
 	cout << "Hello CMake." << endl;
+	cout << "Version: " << std::to_string(PROXY_VERSION_MAJOR) << "." << std::to_string(PROXY_VERSION_MINOR) << "." << std::to_string(PROXY_VERSION_PATCH) << endl;
 	return 0;
 }
