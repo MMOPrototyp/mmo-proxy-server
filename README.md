@@ -13,3 +13,9 @@ sudo chmod 755 build.sh
 ## Install Redis Client Library
 
 https://github.com/cpp-redis/cpp_redis/wiki/Mac-&-Linux-Install
+
+https://github.com/maurodelazeri/conan-cpp_redis
+
+```
+conan create .
+```
