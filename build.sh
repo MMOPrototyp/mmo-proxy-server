@@ -7,3 +7,5 @@ conan install ..
 cd ../
 cmake .
 make
+
+chmod -R 777 bin
