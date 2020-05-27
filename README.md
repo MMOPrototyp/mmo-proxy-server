@@ -9,3 +9,7 @@ https://docs.conan.io/en/latest/getting_started.html
 cd build
 conan install ..
 ```
+
+## Install Redis Client Library
+
+https://github.com/cpp-redis/cpp_redis/wiki/Mac-&-Linux-Install
