@@ -3,9 +3,14 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("mmo-proxy-server")
+project ("mmo-proxy-server" VERSION 1.0.0)
+configure_file(ProxyConfig.h.in ProxyConfig.h)
 
 add_definitions("-std=c++14")
+
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 #include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 include(build/conanbuildinfo.cmake)
@@ -14,5 +19,9 @@ conan_basic_setup()
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
 add_executable (mmo-proxy-server "mmo-proxy-server.cpp" "mmo-proxy-server.h")
 target_link_libraries(mmo-proxy-server ${CONAN_LIBS})
+
+target_include_directories("mmo-proxy-server" PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           )
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.
