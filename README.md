@@ -6,8 +6,8 @@ A proxy server for the MMO prototyp, written in C++
 https://docs.conan.io/en/latest/getting_started.html
 
 ```bash
-cd build
-conan install ..
+sudo chmod 755 build.sh
+./build.sh
 ```
 
 ## Install Redis Client Library
