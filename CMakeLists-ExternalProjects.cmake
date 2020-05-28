@@ -7,6 +7,28 @@ include(ExternalProject)
 # see also: https://github.com/mfreiholz/cmake-example-external-project/blob/master/CMakeLists-ExternalProjects.txt
 
 ################################
+# Network Library tacopie      #
+################################
+
+# add the third party project
+ExternalProject_Add(
+        RedisCPP
+
+        GIT_REPOSITORY "https://github.com/cpp-redis/cpp_redis.git"
+        GIT_TAG "master"
+
+        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/cpp_redis
+
+        UPDATE_COMMAND ""
+        PATCH_COMMAND ""
+
+        SOURCE_DIR "${CMAKE_SOURCE_DIR}/3rdparty/cpp_redis"
+        CMAKE_ARGS -DBuildShared=ON -DBuildExamples=OFF -DCMAKE_INSTALL_PREFIX=${GLOBAL_OUTPUT_PATH}/cpp_redis
+
+        TEST_COMMAND ""
+)
+
+################################
 # Redis Client                 #
 ################################
 
