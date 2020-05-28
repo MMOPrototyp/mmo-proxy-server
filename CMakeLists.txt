@@ -32,4 +32,6 @@ target_include_directories(ProxyServer PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
 
+target_link_libraries(ProxyServer RedisCPPLibrary)
+
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.

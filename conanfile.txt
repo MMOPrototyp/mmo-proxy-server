@@ -2,3 +2,5 @@
 
  [generators]
  cmake
+ #gcc
+ #make
