@@ -4,6 +4,12 @@
 
 # see also: https://unix.stackexchange.com/questions/510744/conan-command-not-found
 
+git submodule init && git submodule update
+
+cd 3rdparty/cpp_redis
+git submodule init && git submodule update
+cd ../
+
 mkdir build
 cd build
 conan install ..
