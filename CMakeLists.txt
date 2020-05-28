@@ -19,6 +19,9 @@ conan_basic_setup()
 #add_subdirectory(src)
 #add_subdirectory(test)
 
+# 3rdparty Libraries
+include(CMakeLists-ExternalProjects.txt)
+
 include_directories(src)
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.

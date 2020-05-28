@@ -19,3 +19,7 @@ https://github.com/maurodelazeri/conan-cpp_redis
 ```
 conan create .
 ```
+
+## Git Submodules
+
+https://git-scm.com/book/en/v2/Git-Tools-Submodules
