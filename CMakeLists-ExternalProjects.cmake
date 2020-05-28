@@ -30,12 +30,12 @@ ExternalProject_Add(
   TEST_COMMAND ""
 )
 
-ExternalProject_Add_Step(
-  RedisCPP CopyToBin
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${GLOBAL_OUTPUT_PATH}/cpp_redis/bin ${GLOBAL_OUTPUT_PATH}
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${GLOBAL_OUTPUT_PATH}/cpp_redis/lib ${GLOBAL_OUTPUT_PATH}
-  DEPENDEES install
-)
+#ExternalProject_Add_Step(
+#  RedisCPP CopyToBin
+#  COMMAND ${CMAKE_COMMAND} -E copy_directory ${GLOBAL_OUTPUT_PATH}/cpp_redis/bin ${GLOBAL_OUTPUT_PATH}
+#  COMMAND ${CMAKE_COMMAND} -E copy_directory ${GLOBAL_OUTPUT_PATH}/cpp_redis/lib ${GLOBAL_OUTPUT_PATH}
+#  DEPENDEES install
+#)
 
 # stores dir to variable REDISCPP_BINARY_DIR
 #ExternalProject_Get_Property(RedisCPP REDISCPP_BINARY_DIR)
