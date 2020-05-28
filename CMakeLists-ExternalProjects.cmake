@@ -46,7 +46,7 @@ ExternalProject_Get_Property(RedisCPP SOURCE_DIR)
 #set_target_properties(RedisCPP PROPERTIES IMPORTED_LOCATION ${GLOBAL_OUTPUT_PATH}/cpp_redis/bin)
 
 add_library(RedisCPPLibrary STATIC IMPORTED)
-set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.a)
+set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.lib)
 
 #add_library(RedisCPPLibrary STATIC IMPORTED)
 
@@ -58,3 +58,4 @@ add_dependencies(RedisCPPLibrary RedisCPP)
 
 message(WARNING ${SOURCE_DIR})
 include_directories(${SOURCE_DIR}/includes)
+include_directories(${SOURCE_DIR}/tacopie/includes)
