@@ -8,6 +8,7 @@ git submodule init && git submodule update
 
 cd 3rdparty/cpp_redis
 git submodule init && git submodule update
+cmake .
 cd ../
 
 mkdir build

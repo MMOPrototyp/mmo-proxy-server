@@ -12,6 +12,7 @@ include(ExternalProject)
 
 # redis_cpp
 
+# add the third party project
 ExternalProject_Add(
   RedisCPP
 
@@ -33,3 +34,13 @@ ExternalProject_Add_Step(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${GLOBAL_OUTPUT_PATH}/cpp_redis/lib ${GLOBAL_OUTPUT_PATH}
   DEPENDEES install
 )
+
+#set_target_properties(RedisCPP PROPERTIES IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/...)
+
+add_library(RedisCPP IMPORTED)
+
+#add_library(
+#    RedisCPPLibrary STATIC "${CMAKE_SOURCE_DIR}/3rdparty/cpp_redis"
+#)
+
+#add_dependencies(RedisCPPLibrary)
