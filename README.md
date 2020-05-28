@@ -27,6 +27,10 @@ cd build
 conan install .. --profile=cygwin
 ```
 
+## Redis Client
+
+Path: `3rdparty/redis-cpp`
+
 ## Git Submodules
 
 https://git-scm.com/book/en/v2/Git-Tools-Submodules
