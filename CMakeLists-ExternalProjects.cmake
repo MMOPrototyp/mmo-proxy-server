@@ -40,6 +40,7 @@ ExternalProject_Add(
 # stores dir to variable REDISCPP_BINARY_DIR
 #ExternalProject_Get_Property(RedisCPP REDISCPP_BINARY_DIR)
 ExternalProject_Get_Property(RedisCPP BINARY_DIR)
+ExternalProject_Get_Property(RedisCPP SOURCE_DIR)
 
 #set_target_properties(RedisCPP PROPERTIES IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/...)
 #set_target_properties(RedisCPP PROPERTIES IMPORTED_LOCATION ${GLOBAL_OUTPUT_PATH}/cpp_redis/bin)
@@ -54,3 +55,5 @@ set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}
 #)
 
 add_dependencies(RedisCPPLibrary RedisCPP)
+
+include_directories(${SOURCE_DIR}/includes)
