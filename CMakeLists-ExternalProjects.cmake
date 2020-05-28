@@ -56,4 +56,5 @@ set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}
 
 add_dependencies(RedisCPPLibrary RedisCPP)
 
+message(WARNING ${SOURCE_DIR})
 include_directories(${SOURCE_DIR}/includes)
