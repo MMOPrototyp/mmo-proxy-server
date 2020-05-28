@@ -34,7 +34,7 @@ ExternalProject_Add(
         UPDATE_COMMAND ""
         PATCH_COMMAND ""
 
-        BUILD_COMMAND make
+        #BUILD_COMMAND make
 
         SOURCE_DIR "${CMAKE_SOURCE_DIR}/3rdparty/config4cpp"
         CMAKE_ARGS -DBuildShared=ON -DBuildExamples=OFF -DCMAKE_INSTALL_PREFIX=${GLOBAL_OUTPUT_PATH}/config4cpp
@@ -48,12 +48,16 @@ ExternalProject_Get_Property(Config4CPP SOURCE_DIR)
 #add_library(Config4CPP STATIC IMPORTED)
 #set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.lib)
 
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
-
 add_library(Config4CPPLibrary STATIC IMPORTED)
 set_target_properties(Config4CPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libconfig4cpp.a)
 
+message(NOTICE "Config4CPPLibrary source directory: " ${SOURCE_DIR})
+message(NOTICE "Config4CPPLibrary binary directory: " ${BINARY_DIR})
+
 add_dependencies(Config4CPPLibrary Config4CPP)
+include_directories(${SOURCE_DIR}/include)
+
+#include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
 
 ################################
 # Ini Parser Library           #
