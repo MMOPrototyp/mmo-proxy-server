@@ -25,6 +25,14 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/redis-cpp/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config/include)
 
+# config4cpp
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
+
+add_library(Config4CPP STATIC IMPORTED)
+set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/libconfig4cpp.a)
+
+#add_dependencies(RedisCPPLibrary RedisCPP)
+
 ################################
 # Ini Parser Library           #
 ################################

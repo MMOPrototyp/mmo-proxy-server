@@ -11,6 +11,11 @@ git submodule init && git submodule update
 cmake .
 cd ../
 
+cd 3rdparty/config4cpp
+git submodule init && git submodule update
+make
+cd ../
+
 mkdir build
 cd build
 conan install ..

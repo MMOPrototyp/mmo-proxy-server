@@ -16,6 +16,9 @@
 
 //#include "3rdparty/inih/cpp/INIReader.h"
 
+#include <config4cpp/Configuration.h>
+#include <iostream>
+using namespace config4cpp;
 using namespace std;
 
 int main()
@@ -28,7 +31,9 @@ int main()
 
 	//https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c
 
-    //INIReader reader("../examples/test.ini");
+	//https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c/6900247
+
+    Configuration *  cfg = Configuration::create();
 
 	//cpp_redis::client client;
 
