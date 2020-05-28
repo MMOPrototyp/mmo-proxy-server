@@ -4,3 +4,6 @@
 [submodule "3rdparty/acl"]
 	path = 3rdparty/acl
 	url = https://github.com/acl-dev/acl.git
+[submodule "3rdparty/redis-cpp"]
+	path = 3rdparty/redis-cpp
+	url = https://github.com/tdv/redis-cpp.git
