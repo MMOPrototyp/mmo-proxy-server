@@ -16,6 +16,9 @@ cd build
 conan install ..
 
 cd ../
+
+make RedisCPP
+
 cmake .
 make
 
