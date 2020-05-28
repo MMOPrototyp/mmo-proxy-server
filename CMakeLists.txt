@@ -39,6 +39,7 @@ target_include_directories(ProxyServer PUBLIC
 
 #target_link_libraries(ProxyServer RedisCPPLibrary)
 
-target_link_libraries( anyExecutable LINK_PUBLIC ${Boost_LIBRARIES} )
+# Boost Library
+#target_link_libraries( anyExecutable LINK_PUBLIC ${Boost_LIBRARIES} )
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.

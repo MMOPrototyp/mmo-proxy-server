@@ -14,6 +14,8 @@
 #include <redis-cpp/stream.h>
 #include <redis-cpp/execute.h>
 
+#include <tao/config.hpp>
+
 using namespace std;
 
 int main()

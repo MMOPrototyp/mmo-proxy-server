@@ -16,8 +16,14 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/redis-cpp/include)
 # Boost Library                #
 ################################
 
-FIND_PACKAGE( Boost 1.73 COMPONENTS program_options REQUIRED )
-INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+#FIND_PACKAGE( Boost 1.73 COMPONENTS program_options REQUIRED )
+#INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+
+################################
+# Config Library               #
+################################
+
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config/include)
 
 ################################
 # Network Library tacopie      #
