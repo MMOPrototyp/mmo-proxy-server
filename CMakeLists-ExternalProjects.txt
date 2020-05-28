@@ -45,7 +45,7 @@ ExternalProject_Get_Property(RedisCPP BINARY_DIR)
 #set_target_properties(RedisCPP PROPERTIES IMPORTED_LOCATION ${GLOBAL_OUTPUT_PATH}/cpp_redis/bin)
 
 add_library(RedisCPPLibrary STATIC IMPORTED)
-set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR})
+set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.a)
 
 #add_library(RedisCPPLibrary STATIC IMPORTED)
 
