@@ -18,7 +18,7 @@ int main()
 	cout << "# Version: " << std::to_string(PROXY_VERSION_MAJOR) << "." << std::to_string(PROXY_VERSION_MINOR) << "." << std::to_string(PROXY_VERSION_PATCH) << "               #" << endl;
 	cout << "################################" << endl;
 
-	//scpp_redis::client client;
+	//cpp_redis::client client;
 
 	return 0;
 }
