@@ -42,6 +42,6 @@ target_include_directories(ProxyServer PUBLIC
 # Boost Library
 #target_link_libraries( anyExecutable LINK_PUBLIC ${Boost_LIBRARIES} )
 
-target_link_libraries(ProxyServer Config4CPP)
+target_link_libraries(ProxyServer Config4CPPLibrary)
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.

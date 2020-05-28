@@ -26,12 +26,34 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/redis-cpp/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config/include)
 
 # config4cpp
+ExternalProject_Add(
+        Config4CPP
+
+        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/config4cpp
+
+        UPDATE_COMMAND ""
+        PATCH_COMMAND ""
+
+        BUILD_COMMAND make
+
+        SOURCE_DIR "${CMAKE_SOURCE_DIR}/3rdparty/config4cpp"
+        CMAKE_ARGS -DBuildShared=ON -DBuildExamples=OFF -DCMAKE_INSTALL_PREFIX=${GLOBAL_OUTPUT_PATH}/config4cpp
+
+        TEST_COMMAND ""
+)
+
+ExternalProject_Get_Property(Config4CPP BINARY_DIR)
+ExternalProject_Get_Property(Config4CPP SOURCE_DIR)
+
+#add_library(Config4CPP STATIC IMPORTED)
+#set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.lib)
+
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
 
-add_library(Config4CPP STATIC IMPORTED)
-set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/libconfig4cpp.a)
+add_library(Config4CPPLibrary STATIC IMPORTED)
+set_target_properties(Config4CPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libconfig4cpp.a)
 
-#add_dependencies(RedisCPPLibrary RedisCPP)
+add_dependencies(Config4CPPLibrary Config4CPP)
 
 ################################
 # Ini Parser Library           #
