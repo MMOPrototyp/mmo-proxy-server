@@ -56,6 +56,9 @@ set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}
 
 add_dependencies(RedisCPPLibrary RedisCPP)
 
-message(WARNING ${SOURCE_DIR})
+#message(WARNING ${SOURCE_DIR})
+message(NOTICE "RedisCPPLibrary source directory: " ${SOURCE_DIR})
+message(NOTICE "RedisCPPLibrary binary directory: " ${BINARY_DIR})
+
 include_directories(${SOURCE_DIR}/includes)
 include_directories(${SOURCE_DIR}/tacopie/includes)
