@@ -20,7 +20,7 @@ conan_basic_setup()
 #add_subdirectory(test)
 
 # 3rdparty Libraries
-include(CMakeLists-ExternalProjects.txt)
+include(CMakeLists-ExternalProjects.cmake)
 
 include_directories(src)
 
