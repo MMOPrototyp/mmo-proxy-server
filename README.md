@@ -35,6 +35,12 @@ Path: `3rdparty/redis-cpp`
 
 https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
+## Conan
+
+```shell script
+conan remote add conan-radalytica https://api.bintray.com/conan/rd/conan-radalytica
+```
+
 ## Special thanks
 
 Special thanks to @Nostritius for his great help with cmake and his great patience. Thank you very much!

@@ -26,6 +26,19 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/redis-cpp/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config/include)
 
 ################################
+# Ini Parser Library           #
+################################
+
+#[[
+file(GLOB SOURCES
+        ${CMAKE_SOURCE_DIR}/3rdparty/inih/cpp/*.h
+        ${CMAKE_SOURCE_DIR}/3rdparty/inih/cpp/*.cpp
+)
+]]
+
+#include_directories(${CMAKE_SOURCE_DIR}/3rdparty/inih/cpp)
+
+################################
 # Network Library tacopie      #
 ################################
 

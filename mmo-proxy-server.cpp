@@ -14,7 +14,7 @@
 #include <redis-cpp/stream.h>
 #include <redis-cpp/execute.h>
 
-#include <tao/config.hpp>
+//#include "3rdparty/inih/cpp/INIReader.h"
 
 using namespace std;
 
@@ -25,6 +25,10 @@ int main()
 	cout << "#                              #" << endl;
 	cout << "# Version: " << std::to_string(PROXY_VERSION_MAJOR) << "." << std::to_string(PROXY_VERSION_MINOR) << "." << std::to_string(PROXY_VERSION_PATCH) << "               #" << endl;
 	cout << "################################" << endl;
+
+	//https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c
+
+    //INIReader reader("../examples/test.ini");
 
 	//cpp_redis::client client;
 
