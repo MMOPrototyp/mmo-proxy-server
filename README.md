@@ -20,6 +20,13 @@ https://github.com/maurodelazeri/conan-cpp_redis
 conan create .
 ```
 
+## Create conan cmake files
+
+```shell script
+cd build
+conan install .. --profile=cygwin
+```
+
 ## Git Submodules
 
 https://git-scm.com/book/en/v2/Git-Tools-Submodules

@@ -7,12 +7,19 @@ include(ExternalProject)
 # see also: https://github.com/mfreiholz/cmake-example-external-project/blob/master/CMakeLists-ExternalProjects.txt
 
 ################################
+# Redis Client (Header only)   #
+################################
+
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/redis-cpp/include)
+
+################################
 # Network Library tacopie      #
 ################################
 
 # add the third party project
+#[[
 ExternalProject_Add(
-        RedisCPP
+        Tacopie
 
         GIT_REPOSITORY "https://github.com/cpp-redis/cpp_redis.git"
         GIT_TAG "master"
@@ -27,6 +34,7 @@ ExternalProject_Add(
 
         TEST_COMMAND ""
 )
+]]
 
 ################################
 # Redis Client                 #
@@ -35,6 +43,7 @@ ExternalProject_Add(
 # redis_cpp
 
 # add the third party project
+#[[
 ExternalProject_Add(
   RedisCPP
 
@@ -60,23 +69,13 @@ ExternalProject_Add(
 #)
 
 # stores dir to variable REDISCPP_BINARY_DIR
-#ExternalProject_Get_Property(RedisCPP REDISCPP_BINARY_DIR)
 ExternalProject_Get_Property(RedisCPP BINARY_DIR)
 ExternalProject_Get_Property(RedisCPP SOURCE_DIR)
 
-#set_target_properties(RedisCPP PROPERTIES IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/...)
-#set_target_properties(RedisCPP PROPERTIES IMPORTED_LOCATION ${GLOBAL_OUTPUT_PATH}/cpp_redis/bin)
-
-add_library(RedisCPPLibrary STATIC IMPORTED)
-set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.lib)
-
 #add_library(RedisCPPLibrary STATIC IMPORTED)
+#set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.lib)
 
-#add_library(
-#    RedisCPPLibrary STATIC "${CMAKE_SOURCE_DIR}/3rdparty/cpp_redis"
-#)
-
-add_dependencies(RedisCPPLibrary RedisCPP)
+#add_dependencies(RedisCPPLibrary RedisCPP)
 
 #message(WARNING ${SOURCE_DIR})
 message(NOTICE "RedisCPPLibrary source directory: " ${SOURCE_DIR})
@@ -84,3 +83,4 @@ message(NOTICE "RedisCPPLibrary binary directory: " ${BINARY_DIR})
 
 include_directories(${SOURCE_DIR}/includes)
 include_directories(${SOURCE_DIR}/tacopie/includes)
+]]

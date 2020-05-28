@@ -6,7 +6,7 @@ cmake_minimum_required (VERSION 3.8)
 project (ProxyServer VERSION 1.0.0)
 configure_file(ProxyConfig.h.in ProxyConfig.h)
 
-add_definitions("-std=c++14")
+add_definitions("-std=c++17")
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 14)
@@ -32,6 +32,6 @@ target_include_directories(ProxyServer PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
 
-target_link_libraries(ProxyServer RedisCPPLibrary)
+#target_link_libraries(ProxyServer RedisCPPLibrary)
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.
