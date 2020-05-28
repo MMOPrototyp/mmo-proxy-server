@@ -34,3 +34,7 @@ Path: `3rdparty/redis-cpp`
 ## Git Submodules
 
 https://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+## Special thanks
+
+Special thanks to @Nostritius for his great help on cmake and his great patience. Thank you very much!
