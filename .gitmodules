@@ -7,3 +7,6 @@
 [submodule "3rdparty/config"]
 	path = 3rdparty/config
 	url = https://github.com/taocpp/config.git
+[submodule "3rdparty/inih"]
+	path = 3rdparty/inih
+	url = https://github.com/benhoyt/inih.git
