@@ -53,4 +53,4 @@ set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}
 #    RedisCPPLibrary STATIC "${CMAKE_SOURCE_DIR}/3rdparty/cpp_redis"
 #)
 
-#add_dependencies(RedisCPPLibrary)
+add_dependencies(RedisCPPLibrary RedisCPP)
