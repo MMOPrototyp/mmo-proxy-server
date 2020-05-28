@@ -47,7 +47,7 @@ ExternalProject_Get_Property(RedisCPP BINARY_DIR)
 add_library(RedisCPPLibrary STATIC IMPORTED)
 set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR})
 
-add_library(RedisCPPLibrary STATIC IMPORTED)
+#add_library(RedisCPPLibrary STATIC IMPORTED)
 
 #add_library(
 #    RedisCPPLibrary STATIC "${CMAKE_SOURCE_DIR}/3rdparty/cpp_redis"
