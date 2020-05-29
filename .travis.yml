@@ -1,0 +1,48 @@
+language: cpp
+dist: bionic
+sudo: require
+
+compiler:
+  - clang
+  - gcc
+
+services:
+  - redis-server
+
+before_install:
+  - sudo apt-get install libboost-all-dev -y
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.sonar/cache
+    - $HOME/.cache
+    - $HOME/.m2
+
+addons:
+  apt:
+    sources:
+      - ppa:chris-lea/redis-server
+      - ubuntu-toolchain-r-test
+    packages:
+      - redis-tools
+      - redis-server
+      - gcc
+      - g++
+      - cmake
+
+#don't do a shallow clone (for sonarqube)
+git:
+  depth: 9999999
+
+script:
+  - chmod 755 build.sh
+  - ./build.sh
+
+notifications:
+  email: false
