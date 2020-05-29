@@ -32,7 +32,7 @@ namespace mmo {
         void setPassword(string password);
         bool connect();
 
-        void addListEntry(string key, string value);
+        void addListEntry(string_view key, string_view value);
 
     private:
         // Data Members
