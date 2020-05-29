@@ -5,10 +5,46 @@
 #ifndef PROXYSERVER_REDISCLIENT_H
 #define PROXYSERVER_REDISCLIENT_H
 
+#define REDISCPP_HEADER_ONLY
 
-class RedisClient {
+#include <cstdlib>
+#include <iostream>
+#include <memory>
+#include <string>
 
-};
+using namespace std;
 
+namespace mmo {
+
+    class RedisClient {
+
+        // Access specifier
+    public:
+
+        //Default Constructor
+        RedisClient(string ip, int port) {
+            this->ip = ip;
+            this->port = port;
+
+            cout << "init redis client" << endl;
+        }
+
+        void setPassword(string password);
+        bool connect();
+
+    private:
+        // Data Members
+
+        //server data
+        string ip;
+        int port;
+        string username;
+        string password;
+
+        //redis stream
+        std::shared_ptr<std::iostream> stream;
+    };
+
+}
 
 #endif //PROXYSERVER_REDISCLIENT_H

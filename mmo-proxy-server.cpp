@@ -13,13 +13,15 @@
 
 #define REDISCPP_HEADER_ONLY
 
-#include <redis-cpp/stream.h>
-#include <redis-cpp/execute.h>
+//#include <redis-cpp/stream.h>
+//#include <redis-cpp/execute.h>
 
 #include <string>
 
 #include <config4cpp/Configuration.h>
 #include <iostream>
+
+#include "RedisClient.h"
 
 using namespace config4cpp;
 using namespace std;
@@ -68,21 +70,14 @@ int main() {
     //connect to redis server
     //auto stream = rediscpp::make_stream(const_cast<char *>(ip), port);
 
-    try {
-        auto stream = rediscpp::make_stream(const_cast<char *>(ip), port);
+    //will automatically call default constructor
+    mmo::RedisClient redisClient(ip, port);
 
-        //authentificate
-        string command = "AUTH ";
-        command.append(password);
-        auto loginResponse = rediscpp::execute(*stream, "AUTH", password);
-        std::cout << loginResponse.as<std::string>() << std::endl;
+    redisClient.setPassword(password);
 
-        auto response = rediscpp::execute(*stream, "ping");
-        std::cout << response.as<std::string>() << std::endl;
-    }
-    catch (std::exception const &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return EXIT_FAILURE;
+    if (!redisClient.connect()) {
+        cerr << "Cannot connect to redis server";
+        return 1;
     }
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
