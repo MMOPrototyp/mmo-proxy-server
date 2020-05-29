@@ -34,7 +34,7 @@ SchemaTypeBoolean::checkRule(
 	const Configuration *		cfg,
 	const char *				typeName,
 	const StringVector &		typeArgs,
-	const char *				rule)
+	const char *				rule) const throw(ConfigurationException)
 {
 	StringBuffer				msg;
 

@@ -702,7 +702,7 @@ ConfigurationImpl::dump(
 	StringBuffer &			buf,
 	bool					wantExpandedUidNames,
 	const char *			scope,
-	const char *			localName)
+	const char *			localName) const throw(ConfigurationException)
 {
 	ConfigItem *			item;
 	StringBuffer			msg;
@@ -737,7 +737,7 @@ ConfigurationImpl::listFullyScopedNames(
 	const char *			localName,
 	Type					typeMask,
 	bool					recursive,
-	StringVector &			names)
+	StringVector &			names) const throw(ConfigurationException)
 {
 	StringVector			filterPatterns;
 
@@ -753,7 +753,7 @@ ConfigurationImpl::listFullyScopedNames(
 	Type					typeMask,
 	bool					recursive,
 	const char *			filterPattern,
-	StringVector &			names)
+	StringVector &			names) const throw(ConfigurationException)
 {
 	StringVector			filterPatterns;
 
@@ -771,7 +771,7 @@ ConfigurationImpl::listFullyScopedNames(
 	Type					typeMask,
 	bool					recursive,
 	const StringVector &	filterPatterns,
-	StringVector &			names)
+	StringVector &			names) const throw(ConfigurationException)
 {
 	StringBuffer			fullyScopedName;
 	StringBuffer			msg;
@@ -809,7 +809,7 @@ ConfigurationImpl::listLocallyScopedNames(
 	Type					typeMask,
 	bool					recursive,
 	const char *			filterPattern,
-	StringVector &			names)
+	StringVector &			names) const throw(ConfigurationException)
 {
 	StringVector			filterPatterns;
 
@@ -825,7 +825,7 @@ ConfigurationImpl::listLocallyScopedNames(
 	const char *			localName,
 	Type					typeMask,
 	bool					recursive,
-	StringVector &			names)
+	StringVector &			names) const throw(ConfigurationException)
 {
 	StringVector			filterPatterns;
 
@@ -841,7 +841,7 @@ ConfigurationImpl::listLocallyScopedNames(
 	Type					typeMask,
 	bool					recursive,
 	const StringVector &	filterPatterns,
-	StringVector &			names)
+	StringVector &			names) const throw(ConfigurationException)
 {
 	StringBuffer			fullyScopedName;
 	StringBuffer			msg;
@@ -869,7 +869,7 @@ const char *
 ConfigurationImpl::lookupString(
 	const char *			scope,
 	const char *			localName,
-	const char *			defaultVal)
+	const char *			defaultVal) const throw(ConfigurationException)
 {
 	Configuration::Type	 	type;
 	StringBuffer			msg;
@@ -903,7 +903,7 @@ ConfigurationImpl::lookupString(
 const char *
 ConfigurationImpl::lookupString(
 	const char *			scope,
-	const char *			localName)
+	const char *			localName) const throw(ConfigurationException)
 {
 	Configuration::Type	 	type;
 	StringBuffer			msg;
@@ -982,7 +982,7 @@ ConfigurationImpl::lookupList(
 	const char *			scope,
 	const char *			localName,
 	const char **&			array,
-	int &					arraySize)
+	int &					arraySize) const throw(ConfigurationException)
 {
 	Configuration::Type	 	type;
 	StringBuffer			msg;
@@ -1017,7 +1017,7 @@ ConfigurationImpl::lookupList(
 	const char *			scope,
 	const char *			localName,
 	StringVector &			list,
-	const StringVector &	defaultList)
+	const StringVector &	defaultList) const throw(ConfigurationException)
 {
 	Configuration::Type	 	type;
 	StringBuffer			msg;
@@ -1057,7 +1057,7 @@ void
 ConfigurationImpl::lookupList(
 	const char *			scope,
 	const char *			localName,
-	StringVector &			list)
+	StringVector &			list) const throw(ConfigurationException)
 {
 	Configuration::Type	 	type;
 	StringBuffer			msg;
@@ -1102,7 +1102,7 @@ ConfigurationImpl::lookupEnum(
 	const char *				typeName,
 	const EnumNameAndValue *	enumInfo,
 	int 						numEnums,
-	const char *				defaultVal)
+	const char *				defaultVal) const throw(ConfigurationException)
 {
 	const char *				strValue;
 	StringBuffer				msg;
@@ -1141,7 +1141,7 @@ ConfigurationImpl::lookupEnum(
 	const char *				typeName,
 	const EnumNameAndValue *	enumInfo,
 	int 						numEnums,
-	int							defaultVal)
+	int							defaultVal) const throw(ConfigurationException)
 {
 	const char *				strValue;
 	StringBuffer				msg;
@@ -1183,7 +1183,7 @@ ConfigurationImpl::lookupEnum(
 	const char *				localName,
 	const char *				typeName,
 	const EnumNameAndValue *	enumInfo,
-	int 						numEnums)
+	int 						numEnums) const throw(ConfigurationException)
 {
 	const char *				strValue;
 	StringBuffer				msg;
@@ -1263,7 +1263,7 @@ bool
 ConfigurationImpl::lookupBoolean(
 	const char *			scope,
 	const char *			localName,
-	bool					defaultVal)
+	bool					defaultVal) const throw(ConfigurationException)
 {
 	int						intVal;
 	const char *			defaultStrVal;
@@ -1283,7 +1283,7 @@ ConfigurationImpl::lookupBoolean(
 bool
 ConfigurationImpl::lookupBoolean(
 	const char *			scope,
-	const char *			localName)
+	const char *			localName) const throw(ConfigurationException)
 {
 	int	intVal;
 
@@ -1297,7 +1297,7 @@ int
 ConfigurationImpl::lookupInt(
 	const char *		scope,
 	const char *		localName,
-	int					defaultVal)
+	int					defaultVal) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	int					result;
@@ -1314,7 +1314,7 @@ ConfigurationImpl::lookupInt(
 int
 ConfigurationImpl::lookupInt(
 	const char *			scope,
-	const char *			localName)
+	const char *			localName) const throw(ConfigurationException)
 {
 	const char *			strValue;
 	int						result;
@@ -1343,7 +1343,7 @@ int
 ConfigurationImpl::stringToInt(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	int					result;
 	char				dummy;
@@ -1386,7 +1386,7 @@ float
 ConfigurationImpl::stringToFloat(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	float				result;
 	char				dummy;
@@ -1446,7 +1446,7 @@ ConfigurationImpl::stringToEnum(
 	const char *				typeName,
 	const char *				str,
 	const EnumNameAndValue *	enumInfo,
-	int 						numEnums)
+	int 						numEnums) const throw(ConfigurationException)
 {
 	StringBuffer				msg;
 	StringBuffer				fullyScopedName;
@@ -1478,7 +1478,7 @@ bool
 ConfigurationImpl::stringToBoolean(
 	const char *			scope,
 	const char *			localName,
-	const char *			str)
+	const char *			str) const throw(ConfigurationException)
 {
 	int				result;
 
@@ -1497,7 +1497,7 @@ ConfigurationImpl::lookupFloatWithUnits(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	float &				floatResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	const char *		str;
 
@@ -1518,7 +1518,7 @@ ConfigurationImpl::lookupFloatWithUnits(
 	float &				floatResult,
 	const char *&		unitsResult,
 	float				defaultFloat,
-	const char *		defaultUnits)
+	const char *		defaultUnits) const throw(ConfigurationException)
 {
 	if (type(scope, localName) == CFG_NO_VALUE) {
 		floatResult = defaultFloat;
@@ -1580,7 +1580,7 @@ ConfigurationImpl::lookupUnitsWithFloat(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	float &				floatResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	const char *		str;
 
@@ -1601,7 +1601,7 @@ ConfigurationImpl::lookupUnitsWithFloat(
 	float &				floatResult,
 	const char *&		unitsResult,
 	float				defaultFloat,
-	const char *		defaultUnits)
+	const char *		defaultUnits) const throw(ConfigurationException)
 {
 	if (type(scope, localName) == CFG_NO_VALUE) {
 		floatResult = defaultFloat;
@@ -1669,7 +1669,7 @@ ConfigurationImpl::stringToIntWithUnits(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	int &				intResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	char *				unitSpelling;
 	int					i;
@@ -1740,7 +1740,7 @@ ConfigurationImpl::lookupIntWithUnits(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	int &				intResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	const char *		str;
 
@@ -1761,7 +1761,7 @@ ConfigurationImpl::lookupIntWithUnits(
 	int &				intResult,
 	const char *&		unitsResult,
 	int					defaultInt,
-	const char *		defaultUnits)
+	const char *		defaultUnits) const throw(ConfigurationException)
 {
 	if (type(scope, localName) == CFG_NO_VALUE) {
 		intResult = defaultInt;
@@ -1824,7 +1824,7 @@ ConfigurationImpl::stringToUnitsWithInt(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	int &				intResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	char *				formatStr;
 	char *				unitSpelling;
@@ -1890,7 +1890,7 @@ ConfigurationImpl::lookupUnitsWithInt(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	int &				intResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	const char *		str;
 
@@ -1911,7 +1911,7 @@ ConfigurationImpl::lookupUnitsWithInt(
 	int &				intResult,
 	const char *&		unitsResult,
 	int					defaultInt,
-	const char *		defaultUnits)
+	const char *		defaultUnits) const throw(ConfigurationException)
 {
 	if (type(scope, localName) == CFG_NO_VALUE) {
 		intResult = defaultInt;
@@ -2176,7 +2176,7 @@ ConfigurationImpl::stringToUnitsWithFloat(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	float &				floatResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	char *				formatStr;
 	char *				unitSpelling;
@@ -2243,7 +2243,7 @@ ConfigurationImpl::stringToFloatWithUnits(
 	const char **		allowedUnits,
 	int					allowedUnitsSize,
 	float &				floatResult,
-	const char *&		unitsResult)
+	const char *&		unitsResult) const throw(ConfigurationException)
 {
 	char *				unitSpelling;
 	int					i;
@@ -2309,7 +2309,7 @@ int
 ConfigurationImpl::stringToDurationMicroseconds(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	float				floatVal;
 	const char *		units;
@@ -2357,7 +2357,7 @@ int
 ConfigurationImpl::stringToDurationMilliseconds(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	float				floatVal;
 	const char *		units;
@@ -2406,7 +2406,7 @@ int
 ConfigurationImpl::stringToDurationSeconds(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	float				floatVal;
 	const char *		units;
@@ -2454,7 +2454,7 @@ int
 ConfigurationImpl::lookupDurationMicroseconds(
 	const char *		scope,
 	const char *		localName,
-	int					defaultVal)
+	int					defaultVal) const throw(ConfigurationException)
 {
 	char				defaultStrValue[128]; // big enough
 	const char *		strValue;
@@ -2475,7 +2475,7 @@ ConfigurationImpl::lookupDurationMicroseconds(
 int
 ConfigurationImpl::lookupDurationMicroseconds(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	int					result;
@@ -2491,7 +2491,7 @@ int
 ConfigurationImpl::lookupDurationMilliseconds(
 	const char *		scope,
 	const char *		localName,
-	int					defaultVal)
+	int					defaultVal) const throw(ConfigurationException)
 {
 	char				defaultStrValue[128]; // big enough
 	const char *		strValue;
@@ -2512,7 +2512,7 @@ ConfigurationImpl::lookupDurationMilliseconds(
 int
 ConfigurationImpl::lookupDurationMilliseconds(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	int					result;
@@ -2528,7 +2528,7 @@ int
 ConfigurationImpl::lookupDurationSeconds(
 	const char *		scope,
 	const char *		localName,
-	int					defaultVal)
+	int					defaultVal) const throw(ConfigurationException)
 {
 	char				defaultStrValue[128]; // big enough
 	const char *		strValue;
@@ -2549,7 +2549,7 @@ ConfigurationImpl::lookupDurationSeconds(
 int
 ConfigurationImpl::lookupDurationSeconds(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	int					result;
@@ -2569,7 +2569,7 @@ ConfigurationImpl::stringToMemorySizeGeneric(
 	const char *			allowedUnits[],
 	const char *			scope,
 	const char *			localName,
-	const char *			str)
+	const char *			str) const throw(ConfigurationException)
 {
 	float					floatVal;
 	const char *			units;
@@ -2598,7 +2598,7 @@ int
 ConfigurationImpl::stringToMemorySizeBytes(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	static const char * allowedUnits[]= {"byte", "bytes", "KB", "MB", "GB"};
 	return stringToMemorySizeGeneric("memorySizeBytes",
@@ -2612,7 +2612,7 @@ int
 ConfigurationImpl::stringToMemorySizeKB(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	static const char * allowedUnits[]= {"KB", "MB", "GB", "TB"};
 	return stringToMemorySizeGeneric("memorySizeKB", MemorySizeKBUnitsInfo, 4,
@@ -2625,7 +2625,7 @@ int
 ConfigurationImpl::stringToMemorySizeMB(
 	const char *		scope,
 	const char *		localName,
-	const char *		str)
+	const char *		str) const throw(ConfigurationException)
 {
 	static const char * allowedUnits[]= {"MB", "GB", "TB", "PB"};
 	return stringToMemorySizeGeneric("memorySizeMB", MemorySizeMBUnitsInfo, 4,
@@ -2638,7 +2638,7 @@ int
 ConfigurationImpl::lookupMemorySizeBytes(
 	const char *		scope,
 	const char *		localName,
-	int					defaultVal)
+	int					defaultVal) const throw(ConfigurationException)
 {
 	char				defaultStrValue[64]; // big enough
 	const char *		strValue;
@@ -2655,7 +2655,7 @@ ConfigurationImpl::lookupMemorySizeBytes(
 int
 ConfigurationImpl::lookupMemorySizeBytes(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	int					result;
@@ -2671,7 +2671,7 @@ int
 ConfigurationImpl::lookupMemorySizeKB(
 	const char *		scope,
 	const char *		localName,
-	int					defaultVal)
+	int					defaultVal) const throw(ConfigurationException)
 {
 	char				defaultStrValue[64]; // big enough
 	const char *		strValue;
@@ -2688,7 +2688,7 @@ ConfigurationImpl::lookupMemorySizeKB(
 int
 ConfigurationImpl::lookupMemorySizeKB(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	int					result;
@@ -2704,7 +2704,7 @@ int
 ConfigurationImpl::lookupMemorySizeMB(
 	const char *		scope,
 	const char *		localName,
-	int					defaultVal)
+	int					defaultVal) const throw(ConfigurationException)
 {
 	char				defaultStrValue[64]; // big enough
 	const char *		strValue;
@@ -2721,7 +2721,7 @@ ConfigurationImpl::lookupMemorySizeMB(
 int
 ConfigurationImpl::lookupMemorySizeMB(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	int					result;
@@ -2737,7 +2737,7 @@ float
 ConfigurationImpl::lookupFloat(
 	const char *		scope,
 	const char *		localName,
-	float				defaultVal)
+	float				defaultVal) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	float				result;
@@ -2754,7 +2754,7 @@ ConfigurationImpl::lookupFloat(
 float
 ConfigurationImpl::lookupFloat(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	const char *		strValue;
 	float				result;
@@ -2769,7 +2769,7 @@ ConfigurationImpl::lookupFloat(
 void
 ConfigurationImpl::lookupScope(
 	const char *		scope,
-	const char *		localName)
+	const char *		localName) const throw(ConfigurationException)
 {
 	StringBuffer		msg;
 	StringBuffer		fullyScopedName;

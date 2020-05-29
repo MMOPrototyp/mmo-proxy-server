@@ -399,7 +399,7 @@ SchemaValidator::validate(
 	const char *			scope,
 	const char *			localName,
 	const StringVector &	itemNames,
-	ForceMode				forceMode)
+	ForceMode				forceMode) const throw(ConfigurationException)
 {
 	StringBuffer			fullyScopedName;
 	StringBuffer			unlistedName;
@@ -492,7 +492,7 @@ SchemaValidator::validateForceMode(
 	const Configuration *	cfg,
 	const char *			scope,
 	const char *			localName,
-	ForceMode				forceMode)
+	ForceMode				forceMode) const throw(ConfigurationException)
 {
 	int						i;
 	bool					isOptional;
@@ -539,7 +539,7 @@ void
 SchemaValidator::validateRequiredUidEntry(
 	const Configuration *	cfg,
 	const char *			fullScope,
-	SchemaIdRuleInfo *		idRule)
+	SchemaIdRuleInfo *		idRule) const throw(ConfigurationException)
 {
 	const char *			nameInRule;
 	const char *			lastDot;
