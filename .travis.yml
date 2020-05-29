@@ -6,7 +6,7 @@ sudo: require
 #language: cpp
 
 compiler:
-  - clang
+#  - clang
   - gcc
 
 services:
