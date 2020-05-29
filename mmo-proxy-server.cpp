@@ -61,9 +61,9 @@ int main() {
         return 1;
     }
 
-    cout << endl;
+    /*cout << endl;
     cout << "Redis Server: " << ip << ":" << port << endl;
-    cout << endl;
+    cout << endl;*/
 
     //see also: https://github.com/tdv/redis-cpp
 

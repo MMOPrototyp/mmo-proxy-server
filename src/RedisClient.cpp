@@ -15,7 +15,10 @@ void mmo::RedisClient::setPassword(string password) {
 
 bool mmo::RedisClient::connect() {
     try {
+        cout << endl;
         cout << "Redis Server: " << ip << ":" << port << endl;
+        cout << endl;
+
         this->stream = rediscpp::make_stream(const_cast<char *>(ip.c_str()), port);
 
         if (!password.empty()) {
