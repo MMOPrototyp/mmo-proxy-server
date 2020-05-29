@@ -41,6 +41,10 @@ https://git-scm.com/book/en/v2/Git-Tools-Submodules
 conan remote add conan-radalytica https://api.bintray.com/conan/rd/conan-radalytica
 ```
 
+## Links
+
+  - https://github.com/nothings/single_file_libs
+
 ## Special thanks
 
 Special thanks to @Nostritius for his great help with cmake and his great patience. Thank you very much!
