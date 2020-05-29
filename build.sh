@@ -29,10 +29,10 @@ make
 
 chmod -R 777 bin
 
-# copy executable to other directory
+# copy executable to other directory, || true for travis ci build (where these directories does not exists)
 cd ../
-mkdir config
-mkdir bin
-mkdir bin/config
-cp -R config/* bin/config
-cp -R mmo-proxy-server/bin/* bin
+mkdir config || true
+mkdir bin || true
+mkdir bin/config || true
+cp -R config/* bin/config || true
+cp -R mmo-proxy-server/bin/* bin || true
