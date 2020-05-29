@@ -13,7 +13,8 @@ services:
   - redis-server
 
 before_install:
-  - sudo apt-get install libboost-all-dev python3 -y
+  - sudo apt-get install libboost-all-dev -y
+#  - sudo apt-get install python3 -y
 
 install:
   # Install conan
