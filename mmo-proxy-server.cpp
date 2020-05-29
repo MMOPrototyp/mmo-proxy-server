@@ -12,6 +12,7 @@
 #include <iostream>
 
 #define REDISCPP_HEADER_ONLY
+
 #include <redis-cpp/stream.h>
 #include <redis-cpp/execute.h>
 
@@ -23,34 +24,34 @@
 using namespace config4cpp;
 using namespace std;
 
-int main()
-{
-	cout << "################################" << endl;
-	cout << "# MMO Prototyp Proxy Server    #" << endl;
-	cout << "#                              #" << endl;
-	cout << "# Version: " << std::to_string(PROXY_VERSION_MAJOR) << "." << std::to_string(PROXY_VERSION_MINOR) << "." << std::to_string(PROXY_VERSION_PATCH) << "               #" << endl;
-	cout << "################################" << endl;
+int main() {
+    cout << "################################" << endl;
+    cout << "# MMO Prototyp Proxy Server    #" << endl;
+    cout << "#                              #" << endl;
+    cout << "# Version: " << std::to_string(PROXY_VERSION_MAJOR) << "." << std::to_string(PROXY_VERSION_MINOR) << "."
+         << std::to_string(PROXY_VERSION_PATCH) << "               #" << endl;
+    cout << "################################" << endl;
 
-	//https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c
+    //https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c
 
-	//https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c/6900247
+    //https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c/6900247
 
-    Configuration *  cfg = Configuration::create();
-    const char *     scope = "Redis";
-    const char *     configFile = "config/redis.cfg";
-    const char *     ip;
-    int       port;
+    Configuration *cfg = Configuration::create();
+    const char *scope = "Redis";
+    const char *configFile = "config/redis.cfg";
+    const char *ip;
+    int port;
     const char *password;
     //bool             true_false;
 
     //see also: http://www.config4star.org/config4star-getting-started-guide/overview-of-config4star-syntax.html
     try {
         cfg->parse(configFile);
-        ip        = cfg->lookupString(scope, "ip");
-        port       = cfg->lookupInt(scope, "port");
-        password   = cfg->lookupString(scope, "password");
+        ip = cfg->lookupString(scope, "ip");
+        port = cfg->lookupInt(scope, "port");
+        password = cfg->lookupString(scope, "password");
         //true_false = cfg->lookupBoolean(scope, "true_false");
-    } catch(const ConfigurationException & ex) {
+    } catch (const ConfigurationException &ex) {
         cerr << ex.c_str() << endl;
         cfg->destroy();
         return 1;
@@ -63,8 +64,25 @@ int main()
     //see also: https://github.com/tdv/redis-cpp
 
     //connect to redis server
-    auto stream = rediscpp::make_stream(const_cast<char *>(ip), port);
+    //auto stream = rediscpp::make_stream(const_cast<char *>(ip), port);
+
+    try {
+        auto stream = rediscpp::make_stream(const_cast<char *>(ip), port);
+
+        //authentificate
+        string command = "AUTH ";
+        command.append(password);
+        auto loginResponse = rediscpp::execute(*stream, "AUTH", password);
+        std::cout << loginResponse.as<std::string>() << std::endl;
+
+        auto response = rediscpp::execute(*stream, "ping");
+        std::cout << response.as<std::string>() << std::endl;
+    }
+    catch (std::exception const &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
-	return 0;
+    return 0;
 }

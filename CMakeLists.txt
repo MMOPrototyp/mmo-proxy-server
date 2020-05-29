@@ -30,7 +30,7 @@ include(CMakeLists-ExternalProjects.cmake)
 include_directories(src)
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
-add_executable (ProxyServer "mmo-proxy-server.cpp" "mmo-proxy-server.h")
+add_executable (ProxyServer "mmo-proxy-server.cpp" "mmo-proxy-server.h" src/RedisClient.cpp src/RedisClient.h)
 target_link_libraries(ProxyServer ${CONAN_LIBS})
 
 target_include_directories(ProxyServer PUBLIC
