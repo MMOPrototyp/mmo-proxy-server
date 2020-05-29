@@ -39,5 +39,11 @@ bool mmo::RedisClient::connect() {
 }
 
 void mmo::RedisClient::addListEntry(string key, string value) {
-    rediscpp::execute(*stream, "LPUSH", key, value);
+    try {
+        auto response = rediscpp::execute(*stream, "LPUSH", key, value);
+        std::cout << response.as<std::string>() << std::endl;
+    }
+    catch (std::exception const &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
 }
