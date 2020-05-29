@@ -18,11 +18,7 @@ before_cache:
 
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.sonar/cache
     - $HOME/.cache
-    - $HOME/.m2
 
 addons:
   apt:
@@ -41,6 +37,10 @@ git:
   depth: 9999999
 
 script:
+  - mkdir build
+  - cd build
+  - conan install ..
+  - cd ../
   - chmod 755 build.sh
   - ./build.sh
 
