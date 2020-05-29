@@ -5,6 +5,14 @@ sudo: require
 
 #language: python
 
+# see also: https://blog.travis-ci.com/support_for_go_c_and_cpp
+
+# see also: https://docs.travis-ci.com/user/languages/cpp/
+
+# see also: https://docs.travis-ci.com/user/installing-dependencies#Installing-Packages-with-the-APT-Addon
+
+# see also: https://docs.conan.io/en/latest/integrations/ci/travisci.html
+
 compiler:
 #  - clang
   - gcc
