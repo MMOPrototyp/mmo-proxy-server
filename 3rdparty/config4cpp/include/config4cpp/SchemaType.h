@@ -54,7 +54,7 @@ protected:
 		const Configuration *	cfg,
 		const char *			typeName,
 		const StringVector &	typeArgs,
-		const char *			rule) const throw(ConfigurationException) = 0;
+		const char *			rule) = 0;
 
 	virtual void validate(
 		const SchemaValidator *	sv,

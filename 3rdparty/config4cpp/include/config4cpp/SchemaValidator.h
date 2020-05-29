@@ -206,7 +206,7 @@ SchemaValidator::validate(
 	const Configuration *	cfg,
 	const char *			scope,
 	const char *			localName,
-	ForceMode				forceMode) const throw(ConfigurationException)
+	ForceMode				forceMode)
 {
 	validate(cfg, scope, localName, true, Configuration::CFG_SCOPE_AND_VARS,
 			 forceMode);
