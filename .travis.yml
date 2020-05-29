@@ -55,8 +55,10 @@ script:
   - cd build
   - conan install ..
   - cd ../
-  - chmod 755 build.sh
-  - ./build.sh
+  - chmod 755 build_travis.sh
+  - ./build_travis.sh
+  - cmake .
+  - make
 
 notifications:
   email: false
