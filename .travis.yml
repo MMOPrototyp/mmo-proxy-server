@@ -1,6 +1,9 @@
-language: cpp
+language: python
+python: "3.7"
 dist: bionic
 sudo: require
+
+#language: cpp
 
 compiler:
   - clang
@@ -10,7 +13,13 @@ services:
   - redis-server
 
 before_install:
-  - sudo apt-get install libboost-all-dev -y
+  - sudo apt-get install libboost-all-dev python3 -y
+
+install:
+  # Install conan
+  - pip install conan
+  # Automatic detection of your arch, compiler, etc.
+  - conan user
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
