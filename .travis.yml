@@ -51,7 +51,7 @@ git:
   depth: 9999999
 
 script:
-  - mkdir build
+  - mkdir build || true
   - cd build
   - conan install ..
   - cd ../
