@@ -25,6 +25,8 @@ using namespace config4cpp;
 using namespace std;
 
 int main() {
+    static_assert("C++17");
+
     cout << "################################" << endl;
     cout << "# MMO Prototyp Proxy Server    #" << endl;
     cout << "#                              #" << endl;
