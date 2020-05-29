@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <iostream>
 
+#define REDISCPP_HEADER_ONLY
 #include <redis-cpp/stream.h>
 #include <redis-cpp/execute.h>
 
@@ -18,6 +19,7 @@
 
 #include <config4cpp/Configuration.h>
 #include <iostream>
+
 using namespace config4cpp;
 using namespace std;
 

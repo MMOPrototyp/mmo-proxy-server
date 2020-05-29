@@ -19,11 +19,19 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/redis-cpp/include)
 #FIND_PACKAGE( Boost 1.73 COMPONENTS program_options REQUIRED )
 #INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
 
+set(Boost_USE_STATIC_LIBS ON)
+find_package(Boost COMPONENTS system)
+
+#find_package(Boost 1.40.0 REQUIRED system)
+include_directories(${Boost_INCLUDE_DIR})
+
+message(NOTICE "Boost include path: " ${Boost_INCLUDE_DIR})
+
 ################################
 # Config Library               #
 ################################
 
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config/include)
+#include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config/include)
 
 # config4cpp
 
