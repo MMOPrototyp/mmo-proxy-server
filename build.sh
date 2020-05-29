@@ -13,7 +13,7 @@ cd ../../
 
 cd 3rdparty/config4cpp
 git submodule init && git submodule update
-make -Wdeprecated
+make CDBG=-w
 cd ../../
 
 mkdir build
