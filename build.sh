@@ -9,12 +9,12 @@ git submodule init && git submodule update
 cd 3rdparty/cpp_redis
 git submodule init && git submodule update
 cmake .
-cd ../
+cd ../../
 
 cd 3rdparty/config4cpp
 git submodule init && git submodule update
 make
-cd ../
+cd ../../
 
 mkdir build
 cd build
