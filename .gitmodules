@@ -3,7 +3,7 @@
 	url = https://github.com/cpp-redis/cpp_redis.git
 [submodule "3rdparty/redis-cpp"]
 	path = 3rdparty/redis-cpp
-	url = https://github.com/tdv/redis-cpp.git
+	url = https://github.com/JuKu/redis-cpp.git
 [submodule "3rdparty/config"]
 	path = 3rdparty/config
 	url = https://github.com/taocpp/config.git

@@ -40,7 +40,7 @@ int main()
     const char *     configFile = "config/redis.cfg";
     const char *     ip;
     int       port;
-    const char *     password;
+    const char *password;
     //bool             true_false;
 
     //see also: http://www.config4star.org/config4star-getting-started-guide/overview-of-config4star-syntax.html
@@ -63,7 +63,7 @@ int main()
     //see also: https://github.com/tdv/redis-cpp
 
     //connect to redis server
-    auto stream = rediscpp::make_stream(ip, std::to_string(port));
+    auto stream = rediscpp::make_stream(const_cast<char *>(ip), port);
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
 	return 0;
