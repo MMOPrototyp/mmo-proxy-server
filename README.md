@@ -1,4 +1,10 @@
 # mmo-proxy-server
+
+Branch|Status
+---|---
+master|[![Build Status](https://travis-ci.org/MMOPrototyp/mmo-proxy-server.svg?branch=master)](https://travis-ci.org/MMOPrototyp/mmo-proxy-server)
+develop|[![Build Status](https://travis-ci.org/MMOPrototyp/mmo-proxy-server.svg?branch=develop)](https://travis-ci.org/MMOPrototyp/mmo-proxy-server)
+
 A proxy server for the MMO prototyp, written in C++
 
 ## Build
