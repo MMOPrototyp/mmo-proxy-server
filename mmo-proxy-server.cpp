@@ -3,6 +3,7 @@
 
 #include "mmo-proxy-server.h"
 #include "ProxyConfig.h"
+#include "ServerConfig.h"
 #include <string>
 //#include "3rdparty/cpp_redis/includes/cpp_redis/core/client.hpp"
 
@@ -40,48 +41,28 @@ int main() {
 
     //https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c/6900247
 
-    Configuration *cfg = Configuration::create();
-    const char *scope = "Redis";
-    const char *configFile = "config/redis.cfg";
-    const char *ip;
-    int port;
-    const char *password;
-    //bool             true_false;
+    mmo::ServerConfig serverConfig;
 
-    //see also: http://www.config4star.org/config4star-getting-started-guide/overview-of-config4star-syntax.html
-    try {
-        cfg->parse(configFile);
-        ip = cfg->lookupString(scope, "ip");
-        port = cfg->lookupInt(scope, "port");
-        password = cfg->lookupString(scope, "password");
-        //true_false = cfg->lookupBoolean(scope, "true_false");
-    } catch (const ConfigurationException &ex) {
-        cerr << ex.c_str() << endl;
-        cfg->destroy();
+    if (!serverConfig.parse("config/redis.cfg")) {
+        cerr << "Error: Cannot parse config file";
         return 1;
     }
 
-    /*cout << endl;
-    cout << "Redis Server: " << ip << ":" << port << endl;
-    cout << endl;*/
+    mmo::RedisConfig redisConfig = serverConfig.getRedisConfig();
+    mmo::ProxyConfig proxyConfig = serverConfig.getProxyConfig();
+    mmo::RedisClient redisClient(redisConfig.ip, redisConfig.port);
 
-    //see also: https://github.com/tdv/redis-cpp
-
-    //connect to redis server
-    //auto stream = rediscpp::make_stream(const_cast<char *>(ip), port);
-
-    //will automatically call default constructor
-    mmo::RedisClient redisClient(ip, port);
-
-    redisClient.setPassword(password);
+    redisClient.setPassword(redisConfig.password);
 
     if (!redisClient.connect()) {
         cerr << "Cannot connect to redis server";
         return 1;
     }
 
+    //TODO: check, if proxy server is already in list
+
     //push list entry
-    redisClient.addListEntry("test", "test1");
+    redisClient.addListEntry("proxy-server-list", proxyConfig.getUrl());
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
     return 0;
