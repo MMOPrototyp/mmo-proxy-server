@@ -80,6 +80,9 @@ int main() {
         return 1;
     }
 
+    //push list entry
+    redisClient.addListEntry("test", "test1");
+
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
     return 0;
 }

@@ -37,3 +37,7 @@ bool mmo::RedisClient::connect() {
 
     return true;
 }
+
+void mmo::RedisClient::addListEntry(string key, string value) {
+    rediscpp::execute(*stream, "LPUSH", key, value);
+}
