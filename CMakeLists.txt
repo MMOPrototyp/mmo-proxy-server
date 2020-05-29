@@ -44,6 +44,9 @@ target_include_directories(ProxyServer PUBLIC
 
 target_link_libraries(ProxyServer ${Boost_LIBRARIES})
 
+# threading system for Boost
+target_link_libraries(ProxyServer ${CMAKE_THREAD_LIBS_INIT})
+
 #target_link_libraries(ProxyServer Config4CPPLibrary)
 target_link_libraries(ProxyServer Config4CPP)
 
