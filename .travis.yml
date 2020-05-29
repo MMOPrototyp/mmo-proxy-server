@@ -14,7 +14,7 @@ sudo: require
 # see also: https://docs.conan.io/en/latest/integrations/ci/travisci.html
 
 compiler:
-#  - clang
+  - clang
   - gcc
 
 #env:
