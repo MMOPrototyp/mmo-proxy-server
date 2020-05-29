@@ -34,5 +34,5 @@ cd ../
 mkdir config
 mkdir bin
 mkdir bin/config
-cp -R config bin/config
+cp -R config/* bin/config
 cp -R mmo-proxy-server/bin/* bin
