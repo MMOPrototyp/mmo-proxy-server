@@ -10,3 +10,6 @@
 [submodule "3rdparty/inih"]
 	path = 3rdparty/inih
 	url = https://github.com/benhoyt/inih.git
+[submodule "3rdparty/redispp"]
+	path = 3rdparty/redispp
+	url = https://github.com/brianwatling/redispp.git
