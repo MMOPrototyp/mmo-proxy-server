@@ -21,6 +21,7 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/redis-cpp/include)
 
 # see also: https://stackoverflow.com/questions/15290386/using-boost-asio-with-cmake?rq=1
 
+#[[
 set (BOOST_MIN_VERSION "1.73.0")
 #set (Boost_NO_BOOST_CMAKE ON)
 
@@ -44,6 +45,7 @@ else()
     include_directories(${Boost_INCLUDE_DIRS})
     link_directories(${Boost_LIBRARY_DIRS})
 endif (NOT Boost_FOUND)
+]]
 
 ################################
 # Config Library               #

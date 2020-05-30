@@ -17,6 +17,30 @@ add_definitions("-std=c++17")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set (BOOST_MIN_VERSION "1.73.0")
+#set (Boost_NO_BOOST_CMAKE ON)
+
+set(Boost_USE_STATIC_LIBS ON)
+find_package(Boost COMPONENTS system)
+
+#find_package(Boost 1.40.0 REQUIRED system)
+include_directories(${Boost_INCLUDE_DIR})
+
+#message(NOTICE "Boost include path: " ${Boost_INCLUDE_DIR})
+
+if (NOT Boost_FOUND)
+    message(FATAL_ERROR "Fatal error: Boost (version >= 1.55) required.")
+else()
+    message(STATUS "Setting up BOOST")
+    #message(STATUS " Boost version: " ${Boost_VERSION})
+    message(STATUS " Boost version: " ${Boost_MAJOR_VERSION} "." ${Boost_MINOR_VERSION} "." ${Boost_SUBMINOR_VERSION})
+    #message(STATUS " Boost library version: " ${Boost_LIB_VERSION})
+    message(STATUS " Includes - ${Boost_INCLUDE_DIRS}")
+    message(STATUS " Library  - ${Boost_LIBRARY_DIRS}")
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${Boost_LIBRARY_DIRS})
+endif (NOT Boost_FOUND)
+
 #include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 include(build/conanbuildinfo.cmake)
 conan_basic_setup()
