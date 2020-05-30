@@ -19,8 +19,11 @@
 
 #include <config4cpp/Configuration.h>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 #include "RedisClient.h"
+#include "MonitoringClient.h"
 
 using namespace config4cpp;
 using namespace std;
@@ -55,6 +58,14 @@ int main() {
     if (!redisClient.connect()) {
         cerr << "Cannot connect to redis server";
         return 1;
+    }
+
+    mmo::MonitoringClient * monitoringClient;
+
+    //send data every minute to redis server
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::seconds(60));
+        //
     }
 
     //TODO: add code here

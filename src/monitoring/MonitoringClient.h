@@ -5,10 +5,13 @@
 #ifndef PROXYSERVER_MONITORINGCLIENT_H
 #define PROXYSERVER_MONITORINGCLIENT_H
 
+namespace mmo {
 
-class MonitoringClient {
+    class MonitoringClient {
 
-};
+    };
+
+}
 
 
 #endif //PROXYSERVER_MONITORINGCLIENT_H
