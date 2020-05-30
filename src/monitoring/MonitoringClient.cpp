@@ -15,6 +15,8 @@
 #include <chrono>
 #include <fstream>
 
+#include <nlohmann/json.hpp>
+
 #ifdef _WIN32
 #include <windows.h>
 #include <stdio.h>
@@ -36,8 +38,21 @@
 
 using namespace std;
 
+// for convenience
+//using json = nlohmann::json;
+
+void mmo::MonitoringClient::init(ServerConfig *serverConfig, RedisClient *redisClient) {
+    this->serverConfig = serverConfig;
+    this->redisClient = redisClient;
+}
+
 void mmo::MonitoringClient::execute() {
     cout << "execute monitoring" << endl;
+
+    nlohmann::json json;
+    json["type"] = "proxy-server";
+    json["server.id"] = serverID;
+    json["server.title"] = serverTitle;
 
 #ifdef BOOST_OS_WINDOWS
     cout << "Windows is not supported in monitoring yet" << endl;
@@ -87,6 +102,8 @@ void mmo::MonitoringClient::execute() {
     //cat /proc/loadavg
 
     //TODO: add code here
+
+    //TODO: publish json object to redis and store it to redis map
 }
 
 double mmo::MonitoringClient::getUptimeInSeconds() {
