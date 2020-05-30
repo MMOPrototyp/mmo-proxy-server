@@ -11,6 +11,6 @@
 using namespace std;
 
 void mmo::MonitoringClient::execute() {
-    cout << "execute monitoring";
+    cout << "execute monitoring" << endl;
     //TODO: add code here
 }
