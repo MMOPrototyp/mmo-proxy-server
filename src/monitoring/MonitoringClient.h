@@ -12,6 +12,7 @@ namespace mmo {
     public:
         void execute();
 
+        double getUptimeInSeconds();
     };
 
 }

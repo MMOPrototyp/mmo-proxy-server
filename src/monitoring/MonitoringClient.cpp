@@ -12,6 +12,9 @@
 #include <stdlib.h>
 #include <cstring>
 
+#include <chrono>
+#include <fstream>
+
 #ifdef _WIN32
 #include <windows.h>
 #include <stdio.h>
@@ -26,6 +29,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#include <fstream>
+#include <sys/sysinfo.h>
 #endif
 
 using namespace std;
@@ -47,7 +53,8 @@ void mmo::MonitoringClient::execute() {
     cout << "Windows is not supported in monitoring yet" << endl;
     return;
 #endif
-
+    //TODO: get uptime
+    cout << to_string(getUptimeInSeconds()) << endl;
 
     //TODO: get temperature
 
@@ -60,21 +67,49 @@ void mmo::MonitoringClient::execute() {
     char line[130];
     int TotalMem, TotalFree, TotalUsed;
 
-    flag=0;
-    memcpy (cmd,"\0",30);
-    sprintf(cmd,"free -t -m|grep Total");
+    flag = 0;
+    memcpy(cmd, "\0", 30);
+    sprintf(cmd, "free -t -m|grep Total");
     fp = popen(cmd, "r");
-    while ( fgets( line, sizeof line, fp))
-    {
+    while (fgets(line, sizeof line, fp)) {
         flag++;
-        sscanf(line,"%*s %d %d %d",&TotalMem, &TotalUsed, &TotalFree);
+        sscanf(line, "%*s %d %d %d", &TotalMem, &TotalUsed, &TotalFree);
     }
     pclose(fp);
 
-    if(flag)
-        printf("TotalMem:%d -- TotalUsed:%d -- TotalFree:%d\n",TotalMem,TotalUsed,TotalFree);
+    if (flag)
+        printf("TotalMem:%d -- TotalUsed:%d -- TotalFree:%d\n", TotalMem, TotalUsed, TotalFree);
     else
         printf("not found\n");
 
     //TODO: add code here
+}
+
+double mmo::MonitoringClient::getUptimeInSeconds() {
+    //see also: https://stackoverflow.com/questions/30095439/how-do-i-get-system-up-time-in-milliseconds-in-c
+
+#ifdef BOOST_OS_WINDOWS
+    cout << "Windows is not supported in monitoring yet" << endl;
+    return;
+#endif
+
+#ifdef __unix__
+    //cout << "Linux" << endl;
+#elif defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
+
+#define OS_Windows
+
+    cout << "Windows is not supported in monitoring yet" << endl;
+    return;
+#endif
+
+    std::chrono::milliseconds uptime(0u);
+    double uptime_seconds;
+    if (ifstream("/proc/uptime", std::ios::in) >> uptime_seconds) {
+        uptime = std::chrono::milliseconds(
+                static_cast<unsigned long long>(uptime_seconds * 1000.0)
+        );
+
+        return uptime_seconds;
+    }
 }
