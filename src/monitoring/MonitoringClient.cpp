@@ -49,6 +49,7 @@ void mmo::MonitoringClient::init(ServerConfig *serverConfig, RedisClient *redisC
 void mmo::MonitoringClient::execute() {
     cout << "execute monitoring" << endl;
 
+    //see also: https://github.com/nlohmann/json#json-as-first-class-data-type
     nlohmann::json json;
     json["type"] = "proxy-server";
     json["server.id"] = serverID;
