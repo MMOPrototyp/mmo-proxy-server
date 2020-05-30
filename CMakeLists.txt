@@ -30,12 +30,18 @@ include(CMakeLists-ExternalProjects.cmake)
 include_directories(src)
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
-add_executable (ProxyServer "mmo-proxy-server.cpp" "mmo-proxy-server.h" src/RedisClient.cpp src/RedisClient.h src/ServerConfig.cpp src/ServerConfig.h)
+add_executable (ProxyServer "mmo-proxy-server.cpp" "mmo-proxy-server.h" src/RedisClient.cpp src/RedisClient.h src/ServerConfig.cpp src/ServerConfig.h src/monitoring/MonitoringClient.cpp src/monitoring/MonitoringClient.h)
+add_executable(Monitoring "src/monitoring/MonitoringMain.cpp" src/monitoring/MonitoringMain.h src/RedisClient.cpp src/RedisClient.h src/ServerConfig.cpp src/ServerConfig.h src/monitoring/MonitoringClient.cpp src/monitoring/MonitoringClient.h)
 target_link_libraries(ProxyServer ${CONAN_LIBS})
+target_link_libraries(Monitoring ${CONAN_LIBS})
 
 target_include_directories(ProxyServer PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
+
+target_include_directories(Monitoring PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        )
 
 #target_link_libraries(ProxyServer RedisCPPLibrary)
 
@@ -43,6 +49,7 @@ target_include_directories(ProxyServer PUBLIC
 #target_link_libraries( anyExecutable LINK_PUBLIC ${Boost_LIBRARIES} )
 
 target_link_libraries(ProxyServer ${Boost_LIBRARIES})
+target_link_libraries(Monitoring ${Boost_LIBRARIES})
 
 # threading system for Boost
 #target_link_libraries(ProxyServer ${CMAKE_THREAD_LIBS_INIT})
@@ -50,8 +57,10 @@ target_link_libraries(ProxyServer ${Boost_LIBRARIES})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries(ProxyServer Threads::Threads)
+target_link_libraries(Monitoring Threads::Threads)
 
 #target_link_libraries(ProxyServer Config4CPPLibrary)
 target_link_libraries(ProxyServer Config4CPP)
+target_link_libraries(Monitoring Config4CPP)
 
 # TODO: Fügen Sie bei Bedarf Tests hinzu, und installieren Sie Ziele.
