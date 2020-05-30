@@ -8,9 +8,73 @@
 #include <cstdlib>
 #include <iostream>
 
+//#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+
+#ifdef _WIN32
+#include <windows.h>
+#include <stdio.h>
+#include <tchar.h>
+
+#define DIV 1048576
+#define WIDTH 7
+#endif
+
+#ifdef linux
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#endif
+
 using namespace std;
 
 void mmo::MonitoringClient::execute() {
     cout << "execute monitoring" << endl;
+
+#ifdef BOOST_OS_WINDOWS
+    cout << "Windows is not supported in monitoring yet" << endl;
+    return;
+#endif
+
+#ifdef __unix__
+    cout << "Linux" << endl;
+#elif defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
+
+#define OS_Windows
+
+    cout << "Windows is not supported in monitoring yet" << endl;
+    return;
+#endif
+
+
+    //TODO: get temperature
+
+    //TODO: get free memory
+
+    //see also: https://stackoverflow.com/questions/8666378/detect-windows-or-linux-in-c-c
+    char cmd[30];
+    int flag = 0;
+    FILE *fp;
+    char line[130];
+    int TotalMem, TotalFree, TotalUsed;
+
+    flag=0;
+    memcpy (cmd,"\0",30);
+    sprintf(cmd,"free -t -m|grep Total");
+    fp = popen(cmd, "r");
+    while ( fgets( line, sizeof line, fp))
+    {
+        flag++;
+        sscanf(line,"%*s %d %d %d",&TotalMem, &TotalUsed, &TotalFree);
+    }
+    pclose(fp);
+
+    if(flag)
+        printf("TotalMem:%d -- TotalUsed:%d -- TotalFree:%d\n",TotalMem,TotalUsed,TotalFree);
+    else
+        printf("not found\n");
+
     //TODO: add code here
 }
