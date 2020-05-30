@@ -82,6 +82,10 @@ void mmo::MonitoringClient::execute() {
     else
         printf("not found\n");
 
+    //https://linuxwiki.de/proc/uptime
+
+    //cat /proc/loadavg
+
     //TODO: add code here
 }
 
