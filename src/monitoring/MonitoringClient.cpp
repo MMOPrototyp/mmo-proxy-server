@@ -49,12 +49,6 @@ void mmo::MonitoringClient::init(ServerConfig *serverConfig, RedisClient *redisC
 void mmo::MonitoringClient::execute() {
     cout << "execute monitoring" << endl;
 
-    //see also: https://github.com/nlohmann/json#json-as-first-class-data-type
-    nlohmann::json json;
-    json["type"] = "proxy-server";
-    json["server.id"] = serverID;
-    json["server.title"] = serverTitle;
-
 #ifdef BOOST_OS_WINDOWS
     cout << "Windows is not supported in monitoring yet" << endl;
     return;
@@ -69,6 +63,12 @@ void mmo::MonitoringClient::execute() {
     cout << "Windows is not supported in monitoring yet" << endl;
     return;
 #endif
+    //see also: https://github.com/nlohmann/json#json-as-first-class-data-type
+    nlohmann::json json;
+    json["type"] = "proxy-server";
+    json["server.id"] = serverID;
+    json["server.title"] = serverTitle;
+
     //TODO: get uptime
     cout << to_string(getUptimeInSeconds()) << endl;
 
@@ -93,10 +93,14 @@ void mmo::MonitoringClient::execute() {
     }
     pclose(fp);
 
-    if (flag)
+    if (flag) {
         printf("TotalMem:%d -- TotalUsed:%d -- TotalFree:%d\n", TotalMem, TotalUsed, TotalFree);
-    else
+        json["memory"]["total"] = TotalMem;
+        json["memory"]["used"] = TotalUsed;
+        json["memory"]["free"] = TotalFree;
+    } else {
         printf("not found\n");
+    }
 
     //https://linuxwiki.de/proc/uptime
 
@@ -105,6 +109,8 @@ void mmo::MonitoringClient::execute() {
     //TODO: add code here
 
     //TODO: publish json object to redis and store it to redis map
+
+    cout << json << endl;
 }
 
 double mmo::MonitoringClient::getUptimeInSeconds() {
