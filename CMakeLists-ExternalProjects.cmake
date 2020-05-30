@@ -46,6 +46,12 @@ else()
 endif (NOT Boost_FOUND)
 
 ################################
+# JSON Library (Header only)   #
+################################
+
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/json/include)
+
+################################
 # Config Library               #
 ################################
 
