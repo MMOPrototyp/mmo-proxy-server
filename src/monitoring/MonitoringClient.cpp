@@ -112,4 +112,6 @@ double mmo::MonitoringClient::getUptimeInSeconds() {
 
         return uptime_seconds;
     }
+
+    return -1;
 }
