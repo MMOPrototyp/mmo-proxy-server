@@ -3,3 +3,7 @@
 //
 
 #include "MonitoringClient.h"
+
+void mmo::MonitoringClient::execute() {
+    //TODO: add code here
+}

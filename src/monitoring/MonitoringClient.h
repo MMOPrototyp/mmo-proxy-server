@@ -9,6 +9,9 @@ namespace mmo {
 
     class MonitoringClient {
 
+    public:
+        void execute();
+
     };
 
 }

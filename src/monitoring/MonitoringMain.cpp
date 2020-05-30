@@ -62,10 +62,12 @@ int main() {
 
     mmo::MonitoringClient * monitoringClient;
 
+    //TODO: initialize monitoring client (set redis client and config)
+
     //send data every minute to redis server
     while (true) {
+        monitoringClient->execute();
         std::this_thread::sleep_for(std::chrono::seconds(60));
-        //
     }
 
     //TODO: add code here
