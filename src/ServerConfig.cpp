@@ -26,6 +26,12 @@ bool mmo::ServerConfig::parse(string configFile) {
         proxyConfig.ip = cfg->lookupString(proxyServerScope.c_str(), "ip");
         proxyConfig.port = cfg->lookupInt(proxyServerScope.c_str(), "port");
         proxyConfig.publicServer = cfg->lookupBoolean(proxyServerScope.c_str(), "public");
+
+        //parse monitoring config
+        string monitoringClientScope = "MonitoringClient";
+        monitoringConfig.use_static_id = cfg->lookupBoolean(monitoringClientScope.c_str(), "use_static_id");
+        monitoringConfig.static_id = cfg->lookupInt(monitoringClientScope.c_str(), "static_id");
+        monitoringConfig.title = cfg->lookupString(monitoringClientScope.c_str(), "title");
     } catch (const ConfigurationException &ex) {
         cerr << ex.c_str() << endl;
         cfg->destroy();

@@ -37,6 +37,15 @@ namespace mmo {
         }
     };
 
+    class MonitoringConfig {
+    public:
+        bool use_static_id;
+        int static_id;
+
+        //server title
+        string title;
+    };
+
     class ServerConfig {
     public:
         RedisConfig getRedisConfig() {
@@ -47,6 +56,10 @@ namespace mmo {
             return proxyConfig;
         }
 
+        MonitoringConfig getMonitoringConfig() {
+            return monitoringConfig;
+        }
+
         bool parse(string filePath);
 
     private:
@@ -54,6 +67,7 @@ namespace mmo {
 
         RedisConfig redisConfig;
         ProxyConfig proxyConfig;
+        MonitoringConfig monitoringConfig;
     };
 
 }
