@@ -62,7 +62,7 @@ int main() {
     //TODO: check, if proxy server is already in list
 
     //push list entry
-    redisClient.addListEntry("proxy-server-list", proxyConfig.getUrl());
+    redisClient.addListEntry("proxy-server-list", proxyConfig.getUrl() + ":" + to_string(PROXY_VERSION_MAJOR) + "." + to_string(PROXY_VERSION_MINOR) + "." + to_string(PROXY_VERSION_PATCH));
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
     return 0;
