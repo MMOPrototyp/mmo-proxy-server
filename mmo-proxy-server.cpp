@@ -71,6 +71,7 @@ int main() {
     //TODO: start tcp and udp server
 
     //stop server and remove server from list
+    cout << "Stop proxy server now" << endl;
     redisClient.removeListEntry("proxy-server-list", serverID);
 
     return 0;
