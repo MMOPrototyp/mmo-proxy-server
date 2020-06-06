@@ -70,7 +70,7 @@ int main() {
 
     //TODO: start tcp and udp server
 
-    //remove server from list
+    //stop server and remove server from list
     redisClient.removeListEntry("proxy-server-list", serverID);
 
     return 0;
