@@ -23,6 +23,7 @@
 #include <iostream>
 
 #include "RedisClient.h"
+#include "proxy/ProxyServer.h"
 
 using namespace config4cpp;
 using namespace std;
@@ -69,6 +70,7 @@ int main() {
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
 
     //TODO: start tcp and udp server
+    mmo::ProxyServer proxyServer(proxyConfig.maxNumberOfClients);
 
     //stop server and remove server from list
     cout << "Stop proxy server now" << endl;

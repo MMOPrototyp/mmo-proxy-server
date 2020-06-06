@@ -31,6 +31,7 @@ namespace mmo {
         string ip;
         int port;
         bool publicServer;
+        int maxNumberOfClients;
 
         string getUrl() {
             return ip + ":" + std::to_string(port);

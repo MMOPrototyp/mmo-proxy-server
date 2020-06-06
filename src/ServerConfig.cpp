@@ -26,6 +26,7 @@ bool mmo::ServerConfig::parse(string configFile) {
         proxyConfig.ip = cfg->lookupString(proxyServerScope.c_str(), "ip");
         proxyConfig.port = cfg->lookupInt(proxyServerScope.c_str(), "port");
         proxyConfig.publicServer = cfg->lookupBoolean(proxyServerScope.c_str(), "public");
+        proxyConfig.maxNumberOfClients = cfg->lookupInt(proxyServerScope.c_str(), "maxNumberOfClients");
 
         //parse monitoring config
         string monitoringClientScope = "MonitoringClient";

@@ -96,7 +96,7 @@ message(NOTICE "Config4CPPLibrary binary directory: " ${BINARY_DIR})
 #add_dependencies(Config4CPPLibrary Config4CPP)
 #include_directories(${SOURCE_DIR}/include)
 
-add_library(Config4CPP STATIC IMPORTED)
+add_library(Config4CPP STATIC IMPORTED src/proxy/ProxyServer.cpp src/proxy/ProxyServer.h)
 set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/libconfig4cpp.a)
 
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
