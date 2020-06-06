@@ -33,6 +33,7 @@ namespace mmo {
         bool connect();
 
         void addListEntry(string_view key, string_view value);
+        void removeListEntry(string_view key, string_view value);
 
     private:
         // Data Members

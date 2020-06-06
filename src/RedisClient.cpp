@@ -47,3 +47,13 @@ void mmo::RedisClient::addListEntry(string_view key, string_view value) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
+
+void mmo::RedisClient::removeListEntry(string_view key, string_view value) {
+    try {
+        auto response = rediscpp::execute(*stream, string_view("LREM"), key, to_string(10), value);
+        //std::cout << response.as<std::string>() << std::endl;
+    }
+    catch (std::exception const &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+}

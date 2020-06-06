@@ -59,7 +59,9 @@ int main() {
         return 1;
     }
 
-    //TODO: check, if proxy server is already in list
+    //check, if proxy server is already in list
+    string_view serverID = proxyConfig.getUrl() + ":" + to_string(PROXY_VERSION_MAJOR) + "." + to_string(PROXY_VERSION_MINOR) + "." + to_string(PROXY_VERSION_PATCH);
+    redisClient.removeListEntry("proxy-server-list", serverID);
 
     //push list entry
     redisClient.addListEntry("proxy-server-list", proxyConfig.getUrl() + ":" + to_string(PROXY_VERSION_MAJOR) + "." + to_string(PROXY_VERSION_MINOR) + "." + to_string(PROXY_VERSION_PATCH));
