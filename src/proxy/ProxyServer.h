@@ -12,6 +12,17 @@
 #include <memory>
 #include <string>
 
+#include <cstdlib>
+#include <deque>
+#include <iostream>
+#include <list>
+#include <memory>
+#include <set>
+#include <utility>
+#include <boost/asio.hpp>
+
+using boost::asio::ip::tcp;
+
 using namespace std;
 
 
@@ -32,6 +43,10 @@ namespace mmo {
         int udpPort;
 
         int maxNumberOfClients;
+
+        boost::asio::io_service io_service;
+
+        tcp::endpoint endpoint;
     };
 
 }
