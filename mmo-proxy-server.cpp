@@ -67,5 +67,11 @@ int main() {
     redisClient.addListEntry("proxy-server-list", proxyConfig.getUrl() + ":" + to_string(PROXY_VERSION_MAJOR) + "." + to_string(PROXY_VERSION_MINOR) + "." + to_string(PROXY_VERSION_PATCH));
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
+
+    //TODO: start tcp and udp server
+
+    //remove server from list
+    redisClient.removeListEntry("proxy-server-list", serverID);
+
     return 0;
 }
