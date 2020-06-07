@@ -73,6 +73,19 @@ int main() {
     mmo::ProxyServer proxyServer(proxyConfig.maxNumberOfClients);
     proxyServer.start("0.0.0.0", proxyConfig.port, proxyConfig.udpPort);
 
+    cout << "Type 'quit' to quit proxy server" << endl;
+
+    while (true) {
+        string input;
+        getline (cin, input);
+
+        if(input.compare("quit") == 0) {
+            break;
+        } else {
+            //command_list.append(input);
+        }
+    }
+
     //stop server and remove server from list
     cout << "Stop proxy server now" << endl;
     redisClient.removeListEntry("proxy-server-list", serverID);
