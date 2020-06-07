@@ -30,6 +30,7 @@ namespace mmo {
     public:
         string ip;
         int port;
+        int udpPort;
         bool publicServer;
         int maxNumberOfClients;
 

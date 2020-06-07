@@ -71,6 +71,7 @@ int main() {
 
     //TODO: start tcp and udp server
     mmo::ProxyServer proxyServer(proxyConfig.maxNumberOfClients);
+    proxyServer.start("0.0.0.0", proxyConfig.port, proxyConfig.udpPort);
 
     //stop server and remove server from list
     cout << "Stop proxy server now" << endl;
