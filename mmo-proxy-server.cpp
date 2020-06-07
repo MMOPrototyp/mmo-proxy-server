@@ -73,6 +73,9 @@ int main() {
     mmo::ProxyServer proxyServer(proxyConfig.maxNumberOfClients);
     proxyServer.start("0.0.0.0", proxyConfig.port, proxyConfig.udpPort);
 
+    cout << endl;
+    cout << "tcp server is listen on port " << to_string(proxyConfig.port) << endl;
+    cout << "udp server is listen on port " << to_string(proxyConfig.udpPort) << endl;
     cout << "Type 'quit' to quit proxy server" << endl;
 
     while (true) {
