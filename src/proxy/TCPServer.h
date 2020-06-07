@@ -32,9 +32,8 @@ namespace mmo {
         void do_accept() {
             acceptor_.async_accept(socket_,
                                    [this](boost::system::error_code ec) {
-                                        cout << "new connection";
-
                                        if (!ec) {
+                                           cout << "new connection";
                                            //std::make_shared<chat_session>(std::move(socket_), room_)->start();
                                        }
 
