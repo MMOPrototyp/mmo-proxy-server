@@ -30,7 +30,7 @@ include(CMakeLists-ExternalProjects.cmake)
 include_directories(src)
 
 # Fügen Sie der ausführbaren Datei dieses Projekts eine Quelle hinzu.
-add_executable (ProxyServer "mmo-proxy-server.cpp" "mmo-proxy-server.h" src/RedisClient.cpp src/RedisClient.h src/ServerConfig.cpp src/ServerConfig.h src/monitoring/MonitoringClient.cpp src/monitoring/MonitoringClient.h src/proxy/ProxyServer.cpp src/proxy/ProxyServer.h src/proxy/TCPServer.cpp src/proxy/TCPServer.h src/proxy/TCPSession.cpp src/proxy/TCPSession.h)
+add_executable (ProxyServer "mmo-proxy-server.cpp" "mmo-proxy-server.h" src/RedisClient.cpp src/RedisClient.h src/ServerConfig.cpp src/ServerConfig.h src/monitoring/MonitoringClient.cpp src/monitoring/MonitoringClient.h src/proxy/ProxyServer.cpp src/proxy/ProxyServer.h src/proxy/TCPServer.cpp src/proxy/TCPServer.h src/proxy/TCPSession.cpp src/proxy/TCPSession.h src/proxy/TCPMessage.cpp src/proxy/TCPMessage.h)
 add_executable(Monitoring "src/monitoring/MonitoringMain.cpp" src/monitoring/MonitoringMain.h src/RedisClient.cpp src/RedisClient.h src/ServerConfig.cpp src/ServerConfig.h src/monitoring/MonitoringClient.cpp src/monitoring/MonitoringClient.h)
 target_link_libraries(ProxyServer ${CONAN_LIBS})
 target_link_libraries(Monitoring ${CONAN_LIBS})
