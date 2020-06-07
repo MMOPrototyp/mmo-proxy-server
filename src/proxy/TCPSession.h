@@ -6,9 +6,13 @@
 #define PROXYSERVER_TCPSESSION_H
 
 
-class TCPSession {
+namespace mmo {
 
-};
+    class TCPSession {
+
+    };
+
+}
 
 
 #endif //PROXYSERVER_TCPSESSION_H
