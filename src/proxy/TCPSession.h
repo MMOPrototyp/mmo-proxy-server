@@ -14,6 +14,8 @@
 #include <utility>
 #include <boost/asio.hpp>
 
+#include "TCPMessage.h"
+
 using namespace std;
 using boost::asio::ip::tcp;
 
@@ -23,9 +25,10 @@ namespace mmo {
     class TCPSession : public std::enable_shared_from_this<TCPSession> {
     public:
         TCPSession(tcp::socket socket/*, chat_room& room*/)
-                : socket_(std::move(socket)),
+                : socket_(std::move(socket))
         //room_(room)
         {
+            //
         }
 
         void start() {
@@ -47,12 +50,12 @@ namespace mmo {
         void do_read_header() {
             auto self(shared_from_this());
             boost::asio::async_read(socket_,
-                                    boost::asio::buffer(read_msg_.data(), chat_message::header_length),
+                                    boost::asio::buffer(read_msg_.data(), TCPMessage::header_length),
                                     [this, self](boost::system::error_code ec, std::size_t /*length*/) {
                                         if (!ec && read_msg_.decode_header()) {
                                             do_read_body();
                                         } else {
-                                            room_.leave(shared_from_this());
+                                            //room_.leave(shared_from_this());
                                         }
                                     });
         }
@@ -63,20 +66,20 @@ namespace mmo {
                                     boost::asio::buffer(read_msg_.body(), read_msg_.body_length()),
                                     [this, self](boost::system::error_code ec, std::size_t /*length*/) {
                                         if (!ec) {
-                                            room_.deliver(read_msg_);
+                                            //room_.deliver(read_msg_);
                                             do_read_header();
                                         } else {
-                                            room_.leave(shared_from_this());
+                                            //room_.leave(shared_from_this());
                                         }
                                     });
         }
 
         void do_write() {
             auto self(shared_from_this());
-            boost::asio::async_write(socket_,
+            /*boost::asio::async_write(socket_,
                                      boost::asio::buffer(write_msgs_.front().data(),
                                                          write_msgs_.front().length()),
-                                     [this, self](boost::system::error_code ec, std::size_t /*length*/) {
+                                     [this, self](boost::system::error_code ec, std::size_t length) {
                                          if (!ec) {
                                              write_msgs_.pop_front();
                                              if (!write_msgs_.empty()) {
@@ -85,13 +88,13 @@ namespace mmo {
                                          } else {
                                              room_.leave(shared_from_this());
                                          }
-                                     });
+                                     });*/
         }
 
         tcp::socket socket_;
-        /*chat_room& room_;
-        chat_message read_msg_;
-        chat_message_queue write_msgs_;*/
+        //chat_room& room_;
+        TCPMessage read_msg_;
+        //chat_message_queue write_msgs_;
     };
 
 }

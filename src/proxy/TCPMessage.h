@@ -25,7 +25,7 @@ namespace mmo {
     class TCPMessage {
     public:
         enum {
-            header_length = 4
+            header_length = 8
         };
         enum {
             max_body_length = 1024
@@ -79,6 +79,9 @@ namespace mmo {
         void encode_header() {
             char header[header_length + 1] = "";
             std::sprintf(header, "%4d", static_cast<int>(body_length_));
+
+            //TODO: encode message typ, extended type and protocol version
+
             std::memcpy(data_, header, header_length);
         }
 
