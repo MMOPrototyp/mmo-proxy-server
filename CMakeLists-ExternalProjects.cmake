@@ -78,6 +78,18 @@ ExternalProject_Add(
         TEST_COMMAND ""
 )
 
+ExternalProject_Get_Property(EVPP BINARY_DIR)
+ExternalProject_Get_Property(EVPP SOURCE_DIR)
+
+#add_library(Config4CPP STATIC IMPORTED)
+#set_target_properties(RedisCPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libcpp_redis.lib)
+
+add_library(EVPPLibrary STATIC IMPORTED)
+set_target_properties(EVPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib/libevpp.a)
+
+message(NOTICE "EVPPLibrary source directory: " ${SOURCE_DIR})
+message(NOTICE "EVPPLibrary binary directory: " ${BINARY_DIR})
+
 ################################
 # Config Library               #
 ################################
