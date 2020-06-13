@@ -52,6 +52,33 @@ endif (NOT Boost_FOUND)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/json/include)
 
 ################################
+# evpp Library                 #
+################################
+
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/evpp/apps)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/evpp/3rdparty)
+
+ExternalProject_Add(
+        EVPP
+
+        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/evpp
+
+        UPDATE_COMMAND ""
+        PATCH_COMMAND ""
+
+        #BUILD_COMMAND make
+
+        SOURCE_DIR "${CMAKE_SOURCE_DIR}/3rdparty/evpp"
+        CMAKE_ARGS -DBuildShared=ON -DBuildExamples=OFF -DCMAKE_INSTALL_PREFIX=${GLOBAL_OUTPUT_PATH}/evpp
+
+        BUILD_IN_SOURCE 1
+        BUILD_COMMAND make
+        INSTALL_COMMAND make
+
+        TEST_COMMAND ""
+)
+
+################################
 # Config Library               #
 ################################
 
