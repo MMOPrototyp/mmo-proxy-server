@@ -16,6 +16,10 @@ git submodule init && git submodule update
 make CDBG=-w
 cd ../../
 
+cd 3rdparty/evpp
+git submodule init && git submodule update
+cd ../../
+
 mkdir build
 cd build
 conan install ..
