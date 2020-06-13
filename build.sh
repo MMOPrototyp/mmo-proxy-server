@@ -19,6 +19,13 @@ cd ../../
 cd 3rdparty/evpp
 git submodule init && git submodule update
 git submodule update --init --recursive
+
+echo "Compile and run unit tests"
+mkdir -p build && cd build
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+$ make -j
+$ make test
+
 cd ../../
 
 mkdir build
