@@ -18,6 +18,7 @@ cd ../../
 
 cd 3rdparty/evpp
 git submodule init && git submodule update
+git submodule update --init --recursive
 cd ../../
 
 mkdir build
