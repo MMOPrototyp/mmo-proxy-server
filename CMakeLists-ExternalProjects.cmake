@@ -55,9 +55,10 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/json/include)
 # evpp Library                 #
 ################################
 
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/evpp/apps)
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/evpp/3rdparty)
+#include_directories(${CMAKE_SOURCE_DIR}/3rdparty/evpp/apps)
+#include_directories(${CMAKE_SOURCE_DIR}/3rdparty/evpp/3rdparty)
 
+#[[
 ExternalProject_Add(
         EVPP
 
@@ -89,6 +90,8 @@ set_target_properties(EVPPLibrary PROPERTIES IMPORTED_LOCATION ${BINARY_DIR}/lib
 
 message(NOTICE "EVPPLibrary source directory: " ${SOURCE_DIR})
 message(NOTICE "EVPPLibrary binary directory: " ${BINARY_DIR})
+
+]]
 
 ################################
 # Config Library               #
