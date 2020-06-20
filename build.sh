@@ -16,15 +16,26 @@ git submodule init && git submodule update
 make CDBG=-w
 cd ../../
 
-cd 3rdparty/evpp
-git submodule init && git submodule update
-git submodule update --init --recursive
+#cd 3rdparty/evpp
+#git submodule init && git submodule update
+#git submodule update --init --recursive
 
-echo "Compile and run unit tests"
-mkdir -p build && cd build
-$ cmake -DCMAKE_BUILD_TYPE=Debug ..
-$ make -j
-$ make test
+#echo "Compile and run unit tests"
+#mkdir -p build && cd build
+#$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+#$ make -j
+#$ make test
+
+#cd ../../
+
+cd 3rdparty/wangle
+git submodule init && git submodule update
+
+echo "Compile wangle..."
+cmake .
+make
+ctest
+sudo make install
 
 cd ../../
 
