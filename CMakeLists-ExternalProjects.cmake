@@ -26,9 +26,11 @@ set (BOOST_MIN_VERSION "1.73.0")
 
 set(Boost_USE_STATIC_LIBS ON)
 find_package(Boost COMPONENTS system)
+#find_package(Boost COMPONENTS asio)
 
 #find_package(Boost 1.40.0 REQUIRED system)
-include_directories(${Boost_INCLUDE_DIR})
+#include_directories(${Boost_INCLUDE_DIR})
+include_directories(${Boost_INCLUDE_DIRS})
 
 #message(NOTICE "Boost include path: " ${Boost_INCLUDE_DIR})
 
