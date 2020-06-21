@@ -21,6 +21,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include(build/conanbuildinfo.cmake)
 conan_basic_setup()
 
+#set(VCPKG_TARGET_ARCHITECTURE x64)
+#set(VCPKG_CRT_LINKAGE dynamic)
+#set(VCPKG_LIBRARY_LINKAGE dynamic)
+
 #add_subdirectory(src)
 #add_subdirectory(test)
 

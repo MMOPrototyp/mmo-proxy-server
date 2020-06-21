@@ -94,6 +94,19 @@ message(NOTICE "EVPPLibrary binary directory: " ${BINARY_DIR})
 ]]
 
 ################################
+# Wangle Library               #
+################################
+
+find_package(folly CONFIG REQUIRED)
+target_link_libraries(main PRIVATE Folly::folly Folly::folly_deps Folly::follybenchmark Folly::folly_test_util)
+
+find_package(fizz CONFIG REQUIRED)
+target_link_libraries(main PRIVATE fizz::fizz)
+
+find_package(wangle REQUIRED)
+target_link_libraries(main PRIVATE wangle::wangle)
+
+################################
 # Config Library               #
 ################################
 
