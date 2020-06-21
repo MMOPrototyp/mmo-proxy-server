@@ -16,6 +16,29 @@ sudo chmod 755 build.sh
 ./build.sh
 ```
 
+To install dependencies:
+```shell script
+sudo apt-get install \
+    g++ \
+    cmake \
+    libboost-all-dev \
+    libevent-dev \
+    libdouble-conversion-dev \
+    libgoogle-glog-dev \
+    libgflags-dev \
+    libiberty-dev \
+    liblz4-dev \
+    liblzma-dev \
+    libsnappy-dev \
+    make \
+    zlib1g-dev \
+    binutils-dev \
+    libjemalloc-dev \
+    libssl-dev \
+    pkg-config \
+    libunwind-dev
+```
+
 ## Install Redis Client Library
 
 https://github.com/cpp-redis/cpp_redis/wiki/Mac-&-Linux-Install

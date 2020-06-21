@@ -19,3 +19,12 @@
 [submodule "3rdparty/glog"]
 	path = 3rdparty/glog
 	url = https://github.com/google/glog.git
+[submodule "3rdparty/folly"]
+	path = 3rdparty/folly
+	url = https://github.com/facebook/folly.git
+[submodule "3rdparty/fizz"]
+	path = 3rdparty/fizz
+	url = https://github.com/facebookincubator/fizz.git
+[submodule "3rdparty/fmt"]
+	path = 3rdparty/fmt
+	url = https://github.com/fmtlib/fmt.git
