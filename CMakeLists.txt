@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt: CMake-Projekt für "mmo-proxy-server". Schließen Sie die Quelle ein, und definieren Sie
 # projektspezifische Logik hier.
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.16)
 
 project (ProxyServer VERSION 1.0.0)
 configure_file(ProxyConfig.h.in ProxyConfig.h)
@@ -17,6 +17,11 @@ configure_file(ProxyConfig.h.in ProxyConfig.h)
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# set C++17 for MSVC
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
+endif(MSVC)
 
 #include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 include(build/conanbuildinfo.cmake)
@@ -48,6 +53,8 @@ target_link_libraries(ProxyServer fizz::fizz)
 
 find_package(wangle REQUIRED)
 target_link_libraries(ProxyServer wangle::wangle)
+
+#set_property(TARGET ProxyServer PROPERTY CXX_STANDARD 17)
 
 target_include_directories(ProxyServer PUBLIC
                            "${PROJECT_BINARY_DIR}"
