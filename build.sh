@@ -28,6 +28,16 @@ cd ../../
 
 #cd ../../
 
+cd 3rdparty/folly
+git submodule init && git submodule update
+
+echo "Compile folly (dependency for wangle)..."
+cmake .
+make
+sudo make install
+
+cd ../../
+
 cd 3rdparty/wangle
 git submodule init && git submodule update
 
