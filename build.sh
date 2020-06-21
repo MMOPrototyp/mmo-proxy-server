@@ -36,6 +36,14 @@ cmake .
 make
 sudo make install
 
+cd 3rdparty/fizz
+git submodule init && git submodule update
+
+echo "Compile fizz (dependency for wangle)..."
+cmake .
+make
+sudo make install
+
 cd ../../
 
 cd 3rdparty/wangle
