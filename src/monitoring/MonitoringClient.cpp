@@ -86,12 +86,24 @@ void mmo::MonitoringClient::execute() {
     flag = 0;
     memcpy(cmd, "\0", 30);
     sprintf(cmd, "free -t -m|grep Total");
+
+#ifdef _WIN32
+    fp = _popen(cmd, "r");
+#else
+    fp = popen(cmd, "r");
+#endif
+
     fp = popen(cmd, "r");
     while (fgets(line, sizeof line, fp)) {
         flag++;
         sscanf(line, "%*s %d %d %d", &TotalMem, &TotalUsed, &TotalFree);
     }
+
+#ifdef _WIN32
+    _pclose(fp);
+#else
     pclose(fp);
+#endif
 
     if (flag) {
         printf("TotalMem:%d -- TotalUsed:%d -- TotalFree:%d\n", TotalMem, TotalUsed, TotalFree);
@@ -128,7 +140,7 @@ double mmo::MonitoringClient::getUptimeInSeconds() {
 #define OS_Windows
 
     cout << "Windows is not supported in monitoring yet" << endl;
-    return;
+    return 0;
 #endif
 
     std::chrono::milliseconds uptime(0u);
