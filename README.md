@@ -39,6 +39,33 @@ sudo apt-get install \
     libunwind-dev
 ```
 
+Windows VCPKG package installation
+```shell script
+./vcpkg install fmt
+./vcpkg install folly
+./vcpkg install fizz
+./vcpkg install wangle
+```
+
+VCPKG (windows only):
+
+  - https://developerpaul123.github.io/c++/cmake/using-vcpkg-on-windows/
+  - https://www.jetbrains.com/help/clion/cmake-profile.html
+  
+Old CMake options:
+```shell script
+-DCMAKE_TOOLCHAIN_FILE=C:/Users/Justin/.../vcpkg/scripts/buildsystems/vcpkg.cmake
+-DCMAKE_GENERATOR_PLATFORM=x64
+-VCPKG_TARGET_TRIPLET=x64
+-A
+x64
+```
+
+New CMake Options:
+```shell script
+-DCMAKE_TOOLCHAIN_FILE=C:/Users/Justin/.../vcpkg/scripts/buildsystems/vcpkg.cmake
+```
+
 ## Install Redis Client Library
 
 https://github.com/cpp-redis/cpp_redis/wiki/Mac-&-Linux-Install
