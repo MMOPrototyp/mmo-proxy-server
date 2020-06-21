@@ -39,6 +39,15 @@ add_executable(Monitoring "src/monitoring/MonitoringMain.cpp" src/monitoring/Mon
 target_link_libraries(ProxyServer ${CONAN_LIBS})
 target_link_libraries(Monitoring ${CONAN_LIBS})
 
+find_package(folly CONFIG REQUIRED)
+target_link_libraries(ProxyServer Folly::folly Folly::folly_deps Folly::follybenchmark Folly::folly_test_util)
+
+find_package(fizz CONFIG REQUIRED)
+target_link_libraries(ProxyServer fizz::fizz)
+
+find_package(wangle REQUIRED)
+target_link_libraries(ProxyServer wangle::wangle)
+
 target_include_directories(ProxyServer PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
