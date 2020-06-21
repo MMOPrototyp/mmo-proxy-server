@@ -8,6 +8,7 @@ configure_file(ProxyConfig.h.in ProxyConfig.h)
 
 # does not work with MSVC
 #add_definitions("-std=c++17")
+#add_definitions("-std=c++17")
 
 # https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD.html
 #set(CMAKE_CXX_STANDARD 17)
