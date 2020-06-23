@@ -77,10 +77,28 @@ Linux: Open shell
 cd 3rdparty/config4cpp
 
 # Windows
+nmake -f Makefile.win clean
+nmake -f Makefile.win clobber
 nmake -f Makefile.win all
 
 #Linux
 make
+```
+
+For Visual Studio 2019 you have also to set the x64 architecture:
+Open "Developer Command Prompt for VS 2019".
+
+```shell script
+VsDevCmd.bat -host_arch=amd64 -arch=amd64
+
+cd VC/Auxiliary/Build
+vcvarsall.bat x86_amd64
+
+# or:
+vcvarsall.bat amd64
+
+#or:
+vcvarsall.bat x64
 ```
 
 ## Install Redis Client Library
