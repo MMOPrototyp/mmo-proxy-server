@@ -66,6 +66,23 @@ New CMake Options:
 -DCMAKE_TOOLCHAIN_FILE=C:/Users/Justin/.../vcpkg/scripts/buildsystems/vcpkg.cmake
 ```
 
+## Build config4cpp
+
+https://docs.microsoft.com/de-de/dotnet/framework/tools/developer-command-prompt-for-vs
+
+Windows: Open "Developer Command Prompt for VS 2019"
+Linux: Open shell
+
+```shell script
+cd 3rdparty/config4cpp
+
+# Windows
+nmake -f Makeile.win
+
+#Linux
+make
+```
+
 ## Install Redis Client Library
 
 https://github.com/cpp-redis/cpp_redis/wiki/Mac-&-Linux-Install
