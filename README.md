@@ -77,7 +77,7 @@ Linux: Open shell
 cd 3rdparty/config4cpp
 
 # Windows
-nmake -f Makefile.win
+nmake -f Makefile.win all
 
 #Linux
 make
