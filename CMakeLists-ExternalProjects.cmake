@@ -157,7 +157,7 @@ include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
 
 add_library(Config4CPP STATIC IMPORTED)
 set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/libconfig4cpp.a)
-set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/libconfig4cpp.lib)
+set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/config4cpp.lib)
 
 ################################
 # Ini Parser Library           #
