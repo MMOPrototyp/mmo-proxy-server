@@ -153,10 +153,11 @@ message(NOTICE "Config4CPPLibrary binary directory: " ${BINARY_DIR})
 #add_dependencies(Config4CPPLibrary Config4CPP)
 #include_directories(${SOURCE_DIR}/include)
 
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
+
 add_library(Config4CPP STATIC IMPORTED)
 set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/libconfig4cpp.a)
-
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/include)
+set_target_properties(Config4CPP PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/3rdparty/config4cpp/lib/libconfig4cpp.lib)
 
 ################################
 # Ini Parser Library           #
@@ -169,7 +170,7 @@ file(GLOB SOURCES
 )
 ]]
 
-#include_directories(${CMAKE_SOURCE_DIR}/3rdparty/inih/cpp)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/inih/cpp)
 
 ################################
 # Network Library tacopie      #
