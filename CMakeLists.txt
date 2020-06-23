@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt: CMake-Projekt für "mmo-proxy-server". Schließen Sie die Quelle ein, und definieren Sie
 # projektspezifische Logik hier.
 #
-cmake_minimum_required (VERSION 3.16)
+cmake_minimum_required (VERSION 3.12)
 
 project (ProxyServer VERSION 1.0.0)
 configure_file(ProxyConfig.h.in ProxyConfig.h)
