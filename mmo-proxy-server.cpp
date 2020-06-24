@@ -22,6 +22,8 @@
 #include <config4cpp/Configuration.h>
 #include <iostream>
 
+#include <thread>
+
 #include "RedisClient.h"
 #include "proxy/ProxyServer.h"
 
@@ -69,9 +71,11 @@ int main() {
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
 
-    //TODO: start tcp and udp server
-    mmo::ProxyServer proxyServer(proxyConfig.maxNumberOfClients);
-    proxyServer.start("0.0.0.0", proxyConfig.port, proxyConfig.udpPort, redisClient);
+    std::thread t([&](){
+        //start tcp and udp server
+        mmo::ProxyServer proxyServer(proxyConfig.maxNumberOfClients);
+        proxyServer.start("0.0.0.0", proxyConfig.port, proxyConfig.udpPort, redisClient);
+    });
 
     cout << endl;
     cout << "tcp server is listen on port " << to_string(proxyConfig.port) << endl;
@@ -88,6 +92,8 @@ int main() {
             //command_list.append(input);
         }
     }
+
+    //t.join();
 
     //stop server and remove server from list
     cout << "Stop proxy server now" << endl;
