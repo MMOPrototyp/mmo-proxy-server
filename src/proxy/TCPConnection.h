@@ -20,6 +20,10 @@ using boost::asio::ip::tcp;
 
 namespace mmo {
 
+    //https://www.boost.org/doc/libs/1_73_0/doc/html/boost_asio/examples.html
+
+    //https://www.boost.org/doc/libs/1_73_0/doc/html/boost_asio/example/cpp17/coroutines_ts/chat_server.cpp
+
     class TCPConnection : public boost::enable_shared_from_this<TCPConnection> {
     public:
         typedef boost::shared_ptr<TCPConnection> pointer;
