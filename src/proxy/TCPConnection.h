@@ -24,8 +24,8 @@ namespace mmo {
     public:
         typedef boost::shared_ptr<TCPConnection> pointer;
 
-        static pointer create(boost::asio::io_service &io_service, mmo::RedisClient *redisClient) {
-            return pointer(new TCPConnection(io_service, redisClient));
+        static pointer create(boost::asio::io_context& io_context, mmo::RedisClient *redisClient) {
+            return pointer(new TCPConnection(io_context, redisClient));
         }
 
         tcp::socket &socket() {
@@ -33,17 +33,22 @@ namespace mmo {
         }
 
         void start() {
+            cout << "new client: " << socket_.remote_endpoint().address() << socket_.remote_endpoint().port() << endl;
+
             //message_ = make_daytime_string();
 
             /*boost::asio::async_write(socket_, boost::asio::buffer(message_),
                                      boost::bind(&TCPConnection::handle_write, shared_from_this(),
                                                  boost::asio::placeholders::error,
                                                  boost::asio::placeholders::bytes_transferred));*/
+
+            /*boost::asio::async_write(socket_, boost::asio::buffer(message_),
+                    boost::bind(&TCPConnection::handle_write, shared_from_this()));*/
         }
 
     private:
-        TCPConnection(boost::asio::io_service &io_service, mmo::RedisClient *redisClient)
-                : socket_(io_service) {
+        TCPConnection(boost::asio::io_context& io_context, mmo::RedisClient *redisClient)
+                : socket_(io_context) {
             this->redisClient = redisClient;
             cout << "new tcp connection" << endl;
         }

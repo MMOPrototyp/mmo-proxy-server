@@ -39,7 +39,7 @@ namespace mmo {
             this->maxNumberOfClients = maxNumberOfClients;
         }
 
-        void start(string_view ip, int tcpPort, int udpPort);
+        void start(string_view ip, int tcpPort, int udpPort, mmo::RedisClient *redisClient);
         void stop();
 
     private:
@@ -49,7 +49,8 @@ namespace mmo {
 
         int maxNumberOfClients;
 
-        boost::asio::io_service io_service;
+        boost::asio::io_context io_context;
+        //boost::asio::io_service io_service;
         //TCPServer tcpServer = null;
 
         tcp::endpoint endpoint;

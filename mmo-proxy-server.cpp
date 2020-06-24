@@ -51,27 +51,27 @@ int main() {
 
     mmo::RedisConfig redisConfig = serverConfig.getRedisConfig();
     mmo::ProxyConfig proxyConfig = serverConfig.getProxyConfig();
-    mmo::RedisClient redisClient(redisConfig.ip, redisConfig.port);
+    mmo::RedisClient *redisClient = new mmo::RedisClient(redisConfig.ip, redisConfig.port);
 
-    redisClient.setPassword(redisConfig.password);
+    redisClient->setPassword(redisConfig.password);
 
-    if (!redisClient.connect()) {
+    if (!redisClient->connect()) {
         cerr << "Cannot connect to redis server";
         return 1;
     }
 
     //check, if proxy server is already in list
     string_view serverID = proxyConfig.getUrl() + ":" + to_string(PROXY_VERSION_MAJOR) + "." + to_string(PROXY_VERSION_MINOR) + "." + to_string(PROXY_VERSION_PATCH);
-    redisClient.removeListEntry("proxy-server-list", serverID);
+    redisClient->removeListEntry("proxy-server-list", serverID);
 
     //push list entry
-    redisClient.addListEntry("proxy-server-list", proxyConfig.getUrl() + ":" + to_string(PROXY_VERSION_MAJOR) + "." + to_string(PROXY_VERSION_MINOR) + "." + to_string(PROXY_VERSION_PATCH));
+    redisClient->addListEntry("proxy-server-list", proxyConfig.getUrl() + ":" + to_string(PROXY_VERSION_MAJOR) + "." + to_string(PROXY_VERSION_MINOR) + "." + to_string(PROXY_VERSION_PATCH));
 
     //std::cout << rediscpp::execute(*stream, "ping").as<std::string>() << std::endl;
 
     //TODO: start tcp and udp server
     mmo::ProxyServer proxyServer(proxyConfig.maxNumberOfClients);
-    proxyServer.start("0.0.0.0", proxyConfig.port, proxyConfig.udpPort);
+    proxyServer.start("0.0.0.0", proxyConfig.port, proxyConfig.udpPort, redisClient);
 
     cout << endl;
     cout << "tcp server is listen on port " << to_string(proxyConfig.port) << endl;
@@ -91,7 +91,7 @@ int main() {
 
     //stop server and remove server from list
     cout << "Stop proxy server now" << endl;
-    redisClient.removeListEntry("proxy-server-list", serverID);
+    redisClient->removeListEntry("proxy-server-list", serverID);
 
     return 0;
 }

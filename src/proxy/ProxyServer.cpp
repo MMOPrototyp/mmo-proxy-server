@@ -21,14 +21,14 @@ using boost::asio::ip::tcp;
     //
 }*/
 
-void mmo::ProxyServer::start(string_view ip, int tcpPort, int udpPort) {
+void mmo::ProxyServer::start(string_view ip, int tcpPort, int udpPort, mmo::RedisClient *redisClient) {
     cout << "start tcp server on port " << tcpPort << endl;
 
     try {
         this->endpoint = tcp::endpoint(tcp::v4(), tcpPort);
-        TCPServer tcpServer(io_service, endpoint);
+        TCPServer tcpServer(io_context, endpoint, redisClient);
 
-        io_service.run();
+        io_context.run();
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
