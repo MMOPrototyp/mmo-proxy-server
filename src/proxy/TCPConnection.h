@@ -13,6 +13,13 @@
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio.hpp>
 
+#include <cstdlib>
+#include <deque>
+#include <list>
+#include <memory>
+#include <set>
+#include <utility>
+
 #include <boost/asio/awaitable.hpp>
 #include <boost/asio/detached.hpp>
 #include <boost/asio/co_spawn.hpp>
@@ -58,6 +65,14 @@ namespace mmo {
         void start() {
             cout << "new client: " << socket_.remote_endpoint().address() << socket_.remote_endpoint().port() << endl;
 
+            /*co_spawn(socket_.get_executor(),
+                     [self = shared_from_this()]{ return self->reader(); },
+                     detached);
+
+            co_spawn(socket_.get_executor(),
+                     [self = shared_from_this()]{ return self->writer(); },
+                     detached);*/
+
             //message_ = make_daytime_string();
 
             /*boost::asio::async_write(socket_, boost::asio::buffer(message_),
@@ -71,7 +86,7 @@ namespace mmo {
 
     private:
         TCPConnection(boost::asio::io_context &io_context, mmo::RedisClient *redisClient)
-                : socket_(io_context) {
+                : timer_(socket_.get_executor()), socket_(io_context) {
             this->redisClient = redisClient;
             cout << "new tcp connection" << endl;
         }
@@ -87,7 +102,7 @@ namespace mmo {
                     boost::asio::async_read_until(socket_,
                                                   boost::asio::dynamic_buffer(read_msg, 1024), "\n", use_awaitable);
 
-                    room_.deliver(read_msg.substr(0, n));
+                    //room_.deliver(read_msg.substr(0, n));
                     read_msg.erase(0, n);
                 }
             }
@@ -116,7 +131,9 @@ namespace mmo {
         }*/
 
         tcp::socket socket_;
-        std::string message_;
+        //std::string message_;
+
+        boost::asio::steady_timer timer_;
 
         mmo::RedisClient *redisClient;
     };
