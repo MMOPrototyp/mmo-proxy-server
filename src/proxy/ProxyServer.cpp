@@ -22,8 +22,14 @@ using boost::asio::ip::tcp;
 }*/
 
 void mmo::ProxyServer::start(string_view ip, int tcpPort, int udpPort) {
-    this->endpoint = tcp::endpoint(tcp::v4(), tcpPort);
-    TCPServer tcpServer(io_service, endpoint);
+    cout << "start tcp server on port " << tcpPort << endl;
 
-    io_service.run();
+    try {
+        this->endpoint = tcp::endpoint(tcp::v4(), tcpPort);
+        TCPServer tcpServer(io_service, endpoint);
+
+        io_service.run();
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
 }

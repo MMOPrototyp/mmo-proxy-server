@@ -19,7 +19,12 @@
 #include <memory>
 #include <set>
 #include <utility>
+#include <boost/bind.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/enable_shared_from_this.hpp>
 #include <boost/asio.hpp>
+
+#include "TCPServer.h"
 
 using boost::asio::ip::tcp;
 
@@ -45,6 +50,7 @@ namespace mmo {
         int maxNumberOfClients;
 
         boost::asio::io_service io_service;
+        //TCPServer tcpServer = null;
 
         tcp::endpoint endpoint;
     };
