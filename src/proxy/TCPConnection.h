@@ -65,6 +65,43 @@ namespace mmo {
         void start() {
             cout << "new client: " << socket_.remote_endpoint().address() << socket_.remote_endpoint().port() << endl;
 
+            this->enableTCPKeepAlive(&socket_);
+
+            /*awaitable<void> reader() {
+                try {
+                    for (std::string read_msg;;) {
+                        std::size_t n = co_await
+                        boost::asio::async_read_until(socket_,
+                                                      boost::asio::dynamic_buffer(read_msg, 1024), "\n", use_awaitable);
+
+                        //room_.deliver(read_msg.substr(0, n));
+                        read_msg.erase(0, n);
+                    }
+                }
+                catch (std::exception &) {
+                    stop();
+                }
+            }
+
+            awaitable<void> writer() {
+                try {
+                    while (socket_.is_open()) {
+                        if (write_msgs_.empty()) {
+                            boost::system::error_code ec;
+                            co_await
+                            timer_.async_wait(redirect_error(use_awaitable, ec));
+                        } else {
+                            co_await boost::asio::async_write(socket_,
+                                                              boost::asio::buffer(write_msgs_.front()), use_awaitable);
+                            write_msgs_.pop_front();
+                        }
+                    }
+                }
+                catch (std::exception &) {
+                    stop();
+                }
+            }*/
+
             /*co_spawn(socket_.get_executor(),
                      [self = shared_from_this()]{ return self->reader(); },
                      detached);
@@ -95,40 +132,26 @@ namespace mmo {
                           size_t /*bytes_transferred*/) {
         }
 
-        /*awaitable<void> reader() {
-            try {
-                for (std::string read_msg;;) {
-                    std::size_t n = co_await
-                    boost::asio::async_read_until(socket_,
-                                                  boost::asio::dynamic_buffer(read_msg, 1024), "\n", use_awaitable);
+        void enableTCPKeepAlive(boost::asio::ip::tcp::socket *tcpsocket) {
+            //enable tcp keepalive
+            // the timeout value
+            unsigned int timeout_milli = 10000;
 
-                    //room_.deliver(read_msg.substr(0, n));
-                    read_msg.erase(0, n);
-                }
-            }
-            catch (std::exception &) {
-                stop();
-            }
+            // platform-specific switch
+            #if defined _WIN32 || defined WIN32 || defined OS_WIN64 || defined _WIN64 || defined WIN64 || defined WINNT
+                // use windows-specific time
+                int32_t timeout = timeout_milli;
+                setsockopt(tcpsocket->native_handle(), SOL_SOCKET, SO_RCVTIMEO, (const char *) &timeout, sizeof(timeout));
+                setsockopt(tcpsocket->native_handle(), SOL_SOCKET, SO_SNDTIMEO, (const char *) &timeout, sizeof(timeout));
+            #else
+                // assume everything else is posix
+                struct timeval tv;
+                tv.tv_sec  = timeout_milli / 1000;
+                tv.tv_usec = (timeout_milli % 1000) * 1000;
+                setsockopt(tcpsocket->native_handle(), SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
+                setsockopt(tcpsocket->native_handle(), SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
+            #endif
         }
-
-        awaitable<void> writer() {
-            try {
-                while (socket_.is_open()) {
-                    if (write_msgs_.empty()) {
-                        boost::system::error_code ec;
-                        co_await
-                        timer_.async_wait(redirect_error(use_awaitable, ec));
-                    } else {
-                        co_await boost::asio::async_write(socket_,
-                                                          boost::asio::buffer(write_msgs_.front()), use_awaitable);
-                        write_msgs_.pop_front();
-                    }
-                }
-            }
-            catch (std::exception &) {
-                stop();
-            }
-        }*/
 
         tcp::socket socket_;
         //std::string message_;
